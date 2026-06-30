@@ -1,3 +1,23 @@
 spring:
-  application:
-    name: backend
+  server:
+    port: 8080
+
+  spring:
+    application:
+      name: admin-server
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/akp?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/akp
+
+    redis:
+      host: localhost
+      port: 6379
+
+  elasticsearch:
+    uris: http://localhost:9200
