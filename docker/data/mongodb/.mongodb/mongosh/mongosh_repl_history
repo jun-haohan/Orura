@@ -1,0 +1,4 @@
+db.knowledge_document.find()
+db.document_chunk.find()
+db.knowledge_document.find()
+use akp
