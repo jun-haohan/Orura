@@ -6,10 +6,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
+/**
+ * 切块表
+ */
 @Data
 @Document("document_chunk")
 public class DocumentChunk {
-    // 单个切块类
 
     @Id
     private String id;

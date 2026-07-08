@@ -92,4 +92,22 @@ public class DocumentIngestionService {
         }
         return filename.substring(index + 1).toLowerCase();
     }
+
+    public List<KnowledgeDocument> listDocuments() {
+        return documentRepository.findAll();
+    }
+
+    public KnowledgeDocument getDocument(String id) {
+        return documentRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("File not found"));
+    }
+
+    public List<DocumentChunk> listChunks(String documentId) {
+        return chunkRepository.findByDocumentIdOrderByChunkIndexAsc(documentId);
+    }
+
+    public void deleteDocument(String documentId) {
+        chunkRepository.deleteByDocumentId(documentId);
+        documentRepository.deleteById(documentId);
+    }
 }

@@ -5,6 +5,10 @@ import org.springframework.stereotype.Component;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+
+/**
+ * txt文件解析器
+ */
 @Component
 public class TxtParser implements DocumentParser {
 

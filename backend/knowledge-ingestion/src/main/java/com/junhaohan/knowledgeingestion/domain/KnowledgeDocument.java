@@ -6,10 +6,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
+/**
+ * 文档表
+ */
 @Data
 @Document("knowledge_document")
 public class KnowledgeDocument {
-    // 文件类
 
     @Id
     private String id;

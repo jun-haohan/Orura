@@ -5,6 +5,10 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * 文本切块器
+ */
 @Component
 public class RecursiveTextSplitter implements ChunkSplitter {
 

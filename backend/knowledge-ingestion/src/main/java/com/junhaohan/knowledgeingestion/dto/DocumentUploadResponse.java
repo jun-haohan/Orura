@@ -2,8 +2,11 @@ package com.junhaohan.knowledgeingestion.dto;
 
 import lombok.Data;
 
-@Data
 
+/**
+ * 上传文件的返回类
+ */
+@Data
 public class DocumentUploadResponse {
 
     private String documentId;
