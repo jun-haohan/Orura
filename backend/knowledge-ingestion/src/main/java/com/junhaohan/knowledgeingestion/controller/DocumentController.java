@@ -67,4 +67,12 @@ public class DocumentController {
         documentIngestionService.deleteDocument(id);
         return "delete ok";
     }
+
+    /**
+     * 重新解析文件
+     */
+    @PostMapping("/{id}/retry")
+    public DocumentUploadResponse retry(@PathVariable String id) throws Exception {
+        return documentIngestionService.retry(id);
+    }
 }

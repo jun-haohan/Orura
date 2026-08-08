@@ -1,10 +1,11 @@
 server:
-  port: 8400
+  port: 9400
 
 spring:
   application:
     name: knowledge-ingestion
 
-  data:
-    mongodb:
-      uri: mongodb://localhost:27017/akp
+  mongodb:
+    host: localhost
+    port: 27017
+    database: akp

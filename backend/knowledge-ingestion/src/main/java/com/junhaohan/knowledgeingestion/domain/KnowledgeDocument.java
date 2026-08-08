@@ -25,4 +25,10 @@ public class KnowledgeDocument {
     private Integer chunkCount;
 
     private LocalDateTime createdAt;
+
+    private String status;        // SUCCESS / FAILED / PARSING
+
+    private String errorMessage;  // 失败原因
+
+    private LocalDateTime updatedAt;
 }
