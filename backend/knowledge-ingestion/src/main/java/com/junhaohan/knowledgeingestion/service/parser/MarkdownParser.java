@@ -2,6 +2,7 @@ package com.junhaohan.knowledgeingestion.service.parser;
 
 import org.springframework.stereotype.Component;
 
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -19,7 +20,12 @@ public class MarkdownParser implements DocumentParser {
     }
 
     @Override
-    public String parse(Path path) throws Exception {
-        return Files.readString(path);
+    public ParseResult parse(Path path) throws Exception {
+        String content = Files.readString(path, StandardCharsets.UTF_8);
+        return new ParseResult(
+                content,
+                "markdown",
+                "builtin-markdown"
+        );
     }
 }

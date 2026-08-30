@@ -31,4 +31,10 @@ public class KnowledgeDocument {
     private String errorMessage;  // 失败原因
 
     private LocalDateTime updatedAt;
+
+    private String parser;
+
+    private String contentFormat;
+
+    private Integer contentLength;
 }

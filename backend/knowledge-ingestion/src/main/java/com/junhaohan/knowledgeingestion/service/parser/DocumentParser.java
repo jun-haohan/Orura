@@ -10,5 +10,5 @@ public interface DocumentParser {
 
     boolean supports(String fileType);
 
-    String parse(Path path) throws Exception;
+    ParseResult parse(Path path) throws Exception;
 }

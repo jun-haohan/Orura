@@ -4,33 +4,54 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Component
-public class MarkdownHeaderSplitter {
+public class MarkdownHeaderSplitter implements ChunkSplitter{
 
-    public List<String> splitByHeader(String text) {
-        List<String> chunks = new ArrayList<>();
+    private static final Pattern HEADER_PATTERN = Pattern.compile("^(#{1,6})\\s+(.+)$");
 
-        if (text == null || text.isBlank()) {
-            return chunks;
-        }
+    @Override
+    public List<String> split(String text) {
+        return splitSections(text).stream().map(MarkdownSection::toMarkdown).toList();
+    }
 
-        String[] lines = text.split("\\R");
-        StringBuilder current = new StringBuilder();
+    // 逐行扫描 Markdown，每遇到一个标题，就把前面的内容封装成一个 MarkdownSection，遇到代码块则跳过
+    public List<MarkdownSection> splitSections(String text) {
+        List<MarkdownSection> sections = new ArrayList<>();
 
-        for (String line : lines) {
-            if (line.startsWith("#") && !current.isEmpty()) {
-                chunks.add(current.toString().trim());
-                current.setLength(0);
+        String currentHeader = "";
+        StringBuilder content = new StringBuilder();
+        boolean inCodeBlock = false;
+
+        for (String line : text.split("\\R", -1)) {
+            String trimmed = line.trim();
+
+            if (trimmed.startsWith("```") || trimmed.startsWith("~~~")) {
+                inCodeBlock = !inCodeBlock;
             }
 
-            current.append(line).append("\n");
+            Matcher matcher = HEADER_PATTERN.matcher(line);
+
+            // 遇到新标题时，结束上一个section，保存，并记录该标题
+            if (!inCodeBlock && matcher.matches()) {
+                addSection(sections, currentHeader, content);
+                currentHeader = line.trim();
+                content.setLength(0);
+            } else {
+                content.append(line).append("\n");
+            }
         }
 
-        if (!current.isEmpty()) {
-            chunks.add(current.toString().trim());
-        }
+        addSection(sections, currentHeader, content);
+        return sections;
+    }
 
-        return chunks;
+    private void addSection(List<MarkdownSection> sections, String header, StringBuilder content) {
+        String text = content.toString().trim();
+        if (!header.isBlank() || text.isBlank()) {
+            sections.add(new MarkdownSection(header, text));
+        }
     }
 }

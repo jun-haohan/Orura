@@ -6,13 +6,22 @@ import com.junhaohan.knowledgeingestion.dto.DocumentUploadResponse;
 import com.junhaohan.knowledgeingestion.repository.DocumentChunkRepository;
 import com.junhaohan.knowledgeingestion.repository.KnowledgeDocumentRepository;
 import com.junhaohan.knowledgeingestion.service.parser.DocumentParser;
+import com.junhaohan.knowledgeingestion.service.parser.ParseResult;
 import com.junhaohan.knowledgeingestion.service.splitter.ChunkSplitter;
+import com.junhaohan.knowledgeingestion.service.splitter.MarkdownChunkSplitter;
 import com.junhaohan.knowledgeingestion.service.splitter.MarkdownHeaderSplitter;
+import com.junhaohan.knowledgeingestion.service.splitter.RecursiveTextSplitter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import tools.jackson.databind.ObjectMapper;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -21,28 +30,46 @@ import java.util.UUID;
 public class DocumentIngestionService {
 
     private final List<DocumentParser> parsers;
-    private final ChunkSplitter chunkSplitter;
-    private final MarkdownHeaderSplitter markdownHeaderSplitter;
+    private final MarkdownChunkSplitter markdownChunkSplitter;
+    private final RecursiveTextSplitter recursiveTextSplitter;
     private final KnowledgeDocumentRepository documentRepository;
     private final DocumentChunkRepository chunkRepository;
 
     public DocumentIngestionService(
             List<DocumentParser> parsers,
-            ChunkSplitter chunkSplitter,
-            MarkdownHeaderSplitter markdownHeaderSplitter,
+            MarkdownChunkSplitter markdownChunkSplitter,
+            RecursiveTextSplitter recursiveTextSplitter,
             KnowledgeDocumentRepository documentRepository,
-            DocumentChunkRepository chunkRepository
+            DocumentChunkRepository chunkRepository, ObjectMapper objectMapper
     ) {
         this.parsers = parsers;
-        this.chunkSplitter = chunkSplitter;
-        this.markdownHeaderSplitter = markdownHeaderSplitter;
+        this.markdownChunkSplitter = markdownChunkSplitter;
+        this.recursiveTextSplitter = recursiveTextSplitter;
         this.documentRepository = documentRepository;
         this.chunkRepository = chunkRepository;
+        this.objectMapper = objectMapper;
     }
 
     private static final String STORAGE_DIR = "data/uploads";
 
     private static final long MAX_FILE_SIZE = 10 * 1024 * 1024;
+
+    private final ObjectMapper objectMapper;
+
+    private List<String> split(ParseResult result) {
+        return switch (result.format().toLowerCase()) {
+            case "markdown" ->
+                    markdownChunkSplitter.split(result.content());
+
+            case "txt" ->
+                    recursiveTextSplitter.split(result.content());
+
+            default ->
+                    throw new IllegalArgumentException(
+                            "Unsupported content format: " + result.format()
+                    );
+        };
+    }
 
     // 上传验证
     private void validateFile(MultipartFile file) {
@@ -61,11 +88,14 @@ public class DocumentIngestionService {
 
         String fileType = getFileType(filename);
         if (!List.of("txt", "md", "markdown", "pdf", "doc", "docx").contains(fileType)) {
+            System.out.println(fileType);
             throw new IllegalArgumentException("File type not supported: " + fileType);
         }
+        System.out.println("validate success");
     }
 
     public DocumentUploadResponse upload(MultipartFile file) throws Exception {
+
         validateFile(file);
 
         String originalFilename = file.getOriginalFilename();
@@ -101,15 +131,21 @@ public class DocumentIngestionService {
         Integer chunkSize = -1;
         // 解析切块，同时更新解析进度，处理异常
         try {
-            String text = parser.parse(savedPath);
+            ParseResult parseResult = parser.parse(savedPath);
 
-            List<String> chunks;
-            if ("md".equals(fileType) || "markdown".equals(fileType)) {
-                chunks = markdownHeaderSplitter.splitByHeader(text);
-            } else {
-                chunks = chunkSplitter.split(text);
-            }
+            System.out.println("ok 1");
+
+            document.setParser(parseResult.parser());
+            document.setContentFormat(parseResult.format());
+            document.setContentLength(parseResult.content().length());
+
+            System.out.println(parseResult);
+
+            List<String> chunks = split(parseResult);
             chunkSize = chunks.size();
+
+            System.out.println("ok 2");
+
 
             for (int i = 0; i < chunks.size(); i++) {
                 DocumentChunk chunk = new DocumentChunk();
@@ -118,9 +154,9 @@ public class DocumentIngestionService {
                 chunk.setContent(chunks.get(i));
                 chunk.setCharCount(chunks.get(i).length());
                 chunk.setCreatedAt(LocalDateTime.now());
-
                 chunkRepository.save(chunk);
             }
+            System.out.println("ok 3");
 
             document.setStatus("SUCCESS");
             document.setChunkCount(chunks.size());
@@ -181,14 +217,13 @@ public class DocumentIngestionService {
                     .findFirst()
                     .orElseThrow(() -> new IllegalArgumentException("暂不支持该文件类型: " + document.getFileType()));
 
-            String text = parser.parse(path);
+            ParseResult parseResult = parser.parse(path);
 
-            List<String> chunks;
-            if ("md".equals(document.getFileType()) || "markdown".equals(document.getFileType())) {
-                chunks = markdownHeaderSplitter.splitByHeader(text);
-            } else {
-                chunks = chunkSplitter.split(text);
-            }
+            document.setParser(parseResult.parser());
+            document.setContentFormat(parseResult.format());
+            document.setContentLength(parseResult.content().length());
+
+            List<String> chunks = split(parseResult);
 
             chunkRepository.deleteByDocumentId(documentId);
 
@@ -215,6 +250,56 @@ public class DocumentIngestionService {
             document.setUpdatedAt(LocalDateTime.now());
             documentRepository.save(document);
             throw e;
+        }
+    }
+
+    private String[] extractTitleAndContent(String text) {
+        if (text == null || text.isBlank()) {
+            return new String[]{"", ""};
+        }
+
+        String[] lines = text.split("\\R", 2);
+
+        if (lines[0].matches("^#{1,6}\\s+.+$")) {
+            return new String[]{
+                    lines[0],
+                    lines.length > 1 ? lines[1].trim() : ""
+            };
+        }
+
+        return new String[]{"", text};
+    }
+
+    public void exportChunks(String documentId) throws IOException {
+        List<DocumentChunk> chunks =
+                chunkRepository.findByDocumentIdOrderByChunkIndexAsc(documentId);
+
+        Path output = Paths.get("tmp_output.txt");
+
+        try (BufferedWriter writer = Files.newBufferedWriter(
+                output,
+                StandardCharsets.UTF_8,
+                StandardOpenOption.CREATE,
+                StandardOpenOption.TRUNCATE_EXISTING)) {
+
+            for (DocumentChunk chunk : chunks) {
+                String[] parts = extractTitleAndContent(chunk.getContent());
+
+                writer.write("{");
+                writer.newLine();
+
+                writer.write("\"title\": "
+                        + objectMapper.writeValueAsString(parts[0]) + ",");
+                writer.newLine();
+
+                writer.write("\"content\": "
+                        + objectMapper.writeValueAsString(parts[1]));
+                writer.newLine();
+
+                writer.write("}");
+                writer.newLine();
+                writer.newLine();
+            }
         }
     }
 }

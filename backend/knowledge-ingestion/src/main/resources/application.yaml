@@ -1,11 +1,20 @@
 server:
-  port: 9400
+  port: 18400
 
 spring:
   application:
     name: knowledge-ingestion
 
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
   mongodb:
     host: localhost
     port: 27017
     database: akp
+
+parser:
+  service:
+    url: http://localhost:19002

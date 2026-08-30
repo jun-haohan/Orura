@@ -1,3 +1,4 @@
+import re
 from pathlib import Path
 from uuid import uuid4
 
@@ -10,6 +11,17 @@ UPLOAD_DIR = Path("uploads")  # 当前工作目录/uploads
 UPLOAD_DIR.mkdir(exist_ok=True)
 
 converter = DocumentConverter()
+
+def clean_content(text: str) -> str:
+    patterns = [
+        r"错误[！!]未定义书签[。.]?",
+        r"错误[！!]未找到引用源[。.]?",
+    ]
+
+    for pattern in patterns:
+        text = re.sub(pattern, "", text)
+
+    return text
 
 @app.get("/health")
 def health():
@@ -35,6 +47,8 @@ async def parser(file: UploadFile = File(...)): # 入参file来自上传文件�
         else:
             result = converter.convert(str(save_path))  # 将文档解析为docling内部的结构化文档
             text = result.document.export_to_markdown()  # 转换成markdown
+
+        text = clean_content(text)
 
         return {
             "filename": file.filename,
