@@ -13,4 +13,6 @@ public interface DocumentChunkRepository extends MongoRepository<DocumentChunk, 
     List<DocumentChunk> findByDocumentIdOrderByChunkIndexAsc(String documentId);
 
     void deleteByDocumentId(String documentId);
+
+    long countByDocumentId(String documentId);
 }

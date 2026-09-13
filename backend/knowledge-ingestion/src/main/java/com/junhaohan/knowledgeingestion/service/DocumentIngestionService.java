@@ -3,14 +3,16 @@ package com.junhaohan.knowledgeingestion.service;
 import com.junhaohan.knowledgeingestion.domain.DocumentChunk;
 import com.junhaohan.knowledgeingestion.domain.KnowledgeDocument;
 import com.junhaohan.knowledgeingestion.dto.DocumentUploadResponse;
+import com.junhaohan.knowledgeingestion.embedding.event.DocumentEmbeddingEvent;
+import com.junhaohan.knowledgeingestion.enums.EmbeddingStatus;
+import com.junhaohan.knowledgeingestion.infrastructure.milvus.MilvusVectorStore;
 import com.junhaohan.knowledgeingestion.repository.DocumentChunkRepository;
 import com.junhaohan.knowledgeingestion.repository.KnowledgeDocumentRepository;
 import com.junhaohan.knowledgeingestion.service.parser.DocumentParser;
 import com.junhaohan.knowledgeingestion.service.parser.ParseResult;
-import com.junhaohan.knowledgeingestion.service.splitter.ChunkSplitter;
 import com.junhaohan.knowledgeingestion.service.splitter.MarkdownChunkSplitter;
-import com.junhaohan.knowledgeingestion.service.splitter.MarkdownHeaderSplitter;
 import com.junhaohan.knowledgeingestion.service.splitter.RecursiveTextSplitter;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import tools.jackson.databind.ObjectMapper;
@@ -40,7 +42,10 @@ public class DocumentIngestionService {
             MarkdownChunkSplitter markdownChunkSplitter,
             RecursiveTextSplitter recursiveTextSplitter,
             KnowledgeDocumentRepository documentRepository,
-            DocumentChunkRepository chunkRepository, ObjectMapper objectMapper
+            DocumentChunkRepository chunkRepository,
+            ObjectMapper objectMapper,
+            MilvusVectorStore milvusVectorStore,
+            ApplicationEventPublisher eventPublisher
     ) {
         this.parsers = parsers;
         this.markdownChunkSplitter = markdownChunkSplitter;
@@ -48,6 +53,8 @@ public class DocumentIngestionService {
         this.documentRepository = documentRepository;
         this.chunkRepository = chunkRepository;
         this.objectMapper = objectMapper;
+        this.milvusVectorStore = milvusVectorStore;
+        this.eventPublisher = eventPublisher;
     }
 
     private static final String STORAGE_DIR = "data/uploads";
@@ -55,6 +62,10 @@ public class DocumentIngestionService {
     private static final long MAX_FILE_SIZE = 10 * 1024 * 1024;
 
     private final ObjectMapper objectMapper;
+
+    private final MilvusVectorStore milvusVectorStore;
+
+    private final ApplicationEventPublisher eventPublisher;
 
     private List<String> split(ParseResult result) {
         return switch (result.format().toLowerCase()) {
@@ -71,7 +82,9 @@ public class DocumentIngestionService {
         };
     }
 
-    // 上传验证
+    /**
+     * 文件格式过滤
+     */
     private void validateFile(MultipartFile file) {
         if (file == null || file.isEmpty()) {
             throw new IllegalArgumentException("File cant be empty");
@@ -106,10 +119,7 @@ public class DocumentIngestionService {
 
         String fileType = getFileType(originalFilename);
 
-        DocumentParser parser = parsers.stream()
-                .filter(p -> p.supports(fileType))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Unsupported file type:" + fileType));
+        findParser(fileType);
 
         Files.createDirectories(Path.of(STORAGE_DIR));
 
@@ -128,50 +138,28 @@ public class DocumentIngestionService {
 
         document = documentRepository.save(document);
 
-        Integer chunkSize = -1;
-        // 解析切块，同时更新解析进度，处理异常
         try {
-            ParseResult parseResult = parser.parse(savedPath);
-
-            System.out.println("ok 1");
-
-            document.setParser(parseResult.parser());
-            document.setContentFormat(parseResult.format());
-            document.setContentLength(parseResult.content().length());
-
-            System.out.println(parseResult);
-
-            List<String> chunks = split(parseResult);
-            chunkSize = chunks.size();
-
-            System.out.println("ok 2");
-
-
-            for (int i = 0; i < chunks.size(); i++) {
-                DocumentChunk chunk = new DocumentChunk();
-                chunk.setDocumentId(document.getId());
-                chunk.setChunkIndex(i);
-                chunk.setContent(chunks.get(i));
-                chunk.setCharCount(chunks.get(i).length());
-                chunk.setCreatedAt(LocalDateTime.now());
-                chunkRepository.save(chunk);
-            }
-            System.out.println("ok 3");
-
-            document.setStatus("SUCCESS");
-            document.setChunkCount(chunks.size());
-            document.setUpdatedAt(LocalDateTime.now());
-            documentRepository.save(document);
-
-            return new DocumentUploadResponse(document.getId(), chunks.size());
+            return parseAndStoreDocument(document, savedPath, false);
         } catch (Exception e) {
-            document.setStatus("FAILED");
-            document.setErrorMessage(e.getMessage());
-            document.setUpdatedAt(LocalDateTime.now());
-            documentRepository.save(document);
+            markParseFailed(document, e);
         }
 
-        return new DocumentUploadResponse(document.getId(), chunkSize);
+        return new DocumentUploadResponse(document.getId(), -1);
+    }
+
+    public DocumentUploadResponse retry(String documentId) throws Exception {
+        KnowledgeDocument document = documentRepository.findById(documentId)
+                .orElseThrow(() -> new IllegalArgumentException("文档不存在"));
+
+        markParsing(document);
+
+        try {
+            Path path = Path.of(document.getStoragePath());
+            return parseAndStoreDocument(document, path, true);
+        } catch (Exception e) {
+            markParseFailed(document, e);
+            throw e;
+        }
     }
 
     private String getFileType(String filename) {
@@ -200,57 +188,81 @@ public class DocumentIngestionService {
         documentRepository.deleteById(documentId);
     }
 
-    public DocumentUploadResponse retry(String documentId) throws Exception {
-        KnowledgeDocument document = documentRepository.findById(documentId)
-                .orElseThrow(() -> new IllegalArgumentException("文档不存在"));
+    private DocumentUploadResponse parseAndStoreDocument(
+            KnowledgeDocument document,
+            Path path,
+            boolean replaceExistingData
+    ) throws Exception {
+        DocumentParser parser = findParser(document.getFileType());
+        ParseResult parseResult = parser.parse(path);
 
+        document.setParser(parseResult.parser());
+        document.setContentFormat(parseResult.format());
+        document.setContentLength(parseResult.content().length());
+
+        List<String> chunks = split(parseResult);
+
+        if (replaceExistingData) {
+            chunkRepository.deleteByDocumentId(document.getId());
+            milvusVectorStore.deleteByDocumentId(document.getId());
+            document.setEmbeddingStatus(EmbeddingStatus.NOT_READY);
+            document.setEmbeddingErrorMessage(null);
+            document.setEmbeddedAt(null);
+        }
+
+        saveChunks(document.getId(), chunks);
+        markParseSuccess(document, chunks.size());
+
+        eventPublisher.publishEvent(
+                new DocumentEmbeddingEvent(document.getId())
+        );
+
+        return new DocumentUploadResponse(document.getId(), chunks.size());
+    }
+
+    private DocumentParser findParser(String fileType) {
+        return parsers.stream()
+                .filter(p -> p.supports(fileType))
+                .findFirst()
+                .orElseThrow(() ->
+                        new IllegalArgumentException("Unsupported file type: " + fileType));
+    }
+
+    private void saveChunks(String documentId, List<String> chunks) {
+        for (int i = 0; i < chunks.size(); i++) {
+            DocumentChunk chunk = new DocumentChunk();
+            chunk.setDocumentId(documentId);
+            chunk.setChunkIndex(i);
+            chunk.setContent(chunks.get(i));
+            chunk.setCharCount(chunks.get(i).length());
+            chunk.setCreatedAt(LocalDateTime.now());
+            chunkRepository.save(chunk);
+        }
+    }
+
+    private void markParsing(KnowledgeDocument document) {
         document.setStatus("PARSING");
         document.setErrorMessage(null);
         document.setUpdatedAt(LocalDateTime.now());
         documentRepository.save(document);
+    }
 
-        try {
-            Path path = Path.of(document.getStoragePath());
+    private void markParseSuccess(KnowledgeDocument document, int chunkCount) {
+        document.setStatus("SUCCESS");
+        document.setChunkCount(chunkCount);
+        document.setUpdatedAt(LocalDateTime.now());
+        document.setEmbeddingStatus(EmbeddingStatus.PENDING);
+        document.setEmbeddingErrorMessage(null);
+        document.setEmbeddedAt(null);
+        documentRepository.save(document);
+    }
 
-            DocumentParser parser = parsers.stream()
-                    .filter(p -> p.supports(document.getFileType()))
-                    .findFirst()
-                    .orElseThrow(() -> new IllegalArgumentException("暂不支持该文件类型: " + document.getFileType()));
-
-            ParseResult parseResult = parser.parse(path);
-
-            document.setParser(parseResult.parser());
-            document.setContentFormat(parseResult.format());
-            document.setContentLength(parseResult.content().length());
-
-            List<String> chunks = split(parseResult);
-
-            chunkRepository.deleteByDocumentId(documentId);
-
-            for (int i = 0; i < chunks.size(); i++) {
-                DocumentChunk chunk = new DocumentChunk();
-                chunk.setDocumentId(documentId);
-                chunk.setChunkIndex(i);
-                chunk.setContent(chunks.get(i));
-                chunk.setCharCount(chunks.get(i).length());
-                chunk.setCreatedAt(LocalDateTime.now());
-                chunkRepository.save(chunk);
-            }
-
-            document.setStatus("SUCCESS");
-            document.setChunkCount(chunks.size());
-            document.setUpdatedAt(LocalDateTime.now());
-            documentRepository.save(document);
-
-            return new DocumentUploadResponse(documentId, chunks.size());
-
-        } catch (Exception e) {
-            document.setStatus("FAILED");
-            document.setErrorMessage(e.getMessage());
-            document.setUpdatedAt(LocalDateTime.now());
-            documentRepository.save(document);
-            throw e;
-        }
+    private void markParseFailed(KnowledgeDocument document, Exception e) {
+        document.setStatus("FAILED");
+        document.setErrorMessage(e.getMessage());
+        document.setUpdatedAt(LocalDateTime.now());
+        document.setEmbeddingStatus(EmbeddingStatus.NOT_READY);
+        documentRepository.save(document);
     }
 
     private String[] extractTitleAndContent(String text) {

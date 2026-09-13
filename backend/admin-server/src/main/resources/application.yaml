@@ -16,7 +16,7 @@ spring:
 
     redis:
       host: localhost
-      port: 6379
+      port: 16379
 
   elasticsearch:
-    uris: http://localhost:9200
+    uris: ${ELASTICSEARCH_URIS:http://localhost:19200}

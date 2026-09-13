@@ -1,6 +1,7 @@
 package com.junhaohan.backend.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.bson.Document;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -20,6 +21,9 @@ public class MiddlewareHealthController {
     private final JdbcTemplate jdbcTemplate;
     private final MongoTemplate mongoTemplate;
     private final StringRedisTemplate redisTemplate;
+
+    @Value("${spring.elasticsearch.uris:http://localhost:19200}")
+    private String elasticsearchUri;
 
 
     @GetMapping("/mysql")
@@ -45,7 +49,7 @@ public class MiddlewareHealthController {
         HttpClient client = HttpClient.newHttpClient();
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:9200"))
+                .uri(URI.create(elasticsearchUri))
                 .GET()
                 .build();
 

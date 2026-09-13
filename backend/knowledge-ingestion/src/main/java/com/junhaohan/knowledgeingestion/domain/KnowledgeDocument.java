@@ -1,9 +1,11 @@
 package com.junhaohan.knowledgeingestion.domain;
 
+import com.junhaohan.knowledgeingestion.enums.EmbeddingStatus;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.security.auth.callback.LanguageCallback;
 import java.time.LocalDateTime;
 
 /**
@@ -26,7 +28,7 @@ public class KnowledgeDocument {
 
     private LocalDateTime createdAt;
 
-    private String status;        // SUCCESS / FAILED / PARSING
+    private String status;        // 解析状态 SUCCESS / FAILED / PARSING
 
     private String errorMessage;  // 失败原因
 
@@ -37,4 +39,14 @@ public class KnowledgeDocument {
     private String contentFormat;
 
     private Integer contentLength;
+
+    // 向量化状态
+
+    private EmbeddingStatus embeddingStatus; // 是否已写入向量库
+
+    private String embeddingErrorMessage;
+
+    private LocalDateTime embeddingStartedAt;
+
+    private LocalDateTime embeddedAt;
 }

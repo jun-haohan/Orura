@@ -15,6 +15,16 @@ spring:
     port: 27017
     database: akp
 
+milvus:
+  uri: http://localhost:19530
+  collection-name: knowledge_chunk_vector
+
+embedding:
+  base-url: http://localhost:19003
+  model: BAAI/bge-m3
+  dimension: 1024
+  batch-size: 16
+
 parser:
   service:
     url: http://localhost:19002
