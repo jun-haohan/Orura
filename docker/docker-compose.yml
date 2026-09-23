@@ -8,7 +8,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: akp
     ports:
-      - "3306:3306"
+      - "13306:3306"
     volumes:
       - ./data/mysql:/var/lib/mysql
 
@@ -32,7 +32,7 @@ services:
       - ./data/redis:/data
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.15.3
+    image: docker.elastic.co/elasticsearch/elasticsearch:9.2.2
     container_name: akp-elasticsearch
     restart: unless-stopped
     environment:

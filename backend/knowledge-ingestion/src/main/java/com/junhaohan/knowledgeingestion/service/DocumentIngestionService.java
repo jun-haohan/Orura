@@ -8,6 +8,7 @@ import com.junhaohan.knowledgeingestion.enums.EmbeddingStatus;
 import com.junhaohan.knowledgeingestion.infrastructure.milvus.MilvusVectorStore;
 import com.junhaohan.knowledgeingestion.repository.DocumentChunkRepository;
 import com.junhaohan.knowledgeingestion.repository.KnowledgeDocumentRepository;
+import com.junhaohan.knowledgeingestion.retrieval.search.ElasticsearchSearchIndexService;
 import com.junhaohan.knowledgeingestion.service.parser.DocumentParser;
 import com.junhaohan.knowledgeingestion.service.parser.ParseResult;
 import com.junhaohan.knowledgeingestion.service.splitter.MarkdownChunkSplitter;
@@ -36,6 +37,7 @@ public class DocumentIngestionService {
     private final RecursiveTextSplitter recursiveTextSplitter;
     private final KnowledgeDocumentRepository documentRepository;
     private final DocumentChunkRepository chunkRepository;
+    private final ElasticsearchSearchIndexService elasticsearchSearchIndexService;
 
     public DocumentIngestionService(
             List<DocumentParser> parsers,
@@ -43,6 +45,7 @@ public class DocumentIngestionService {
             RecursiveTextSplitter recursiveTextSplitter,
             KnowledgeDocumentRepository documentRepository,
             DocumentChunkRepository chunkRepository,
+            ElasticsearchSearchIndexService elasticsearchSearchIndexService,
             ObjectMapper objectMapper,
             MilvusVectorStore milvusVectorStore,
             ApplicationEventPublisher eventPublisher
@@ -52,6 +55,7 @@ public class DocumentIngestionService {
         this.recursiveTextSplitter = recursiveTextSplitter;
         this.documentRepository = documentRepository;
         this.chunkRepository = chunkRepository;
+        this.elasticsearchSearchIndexService = elasticsearchSearchIndexService;
         this.objectMapper = objectMapper;
         this.milvusVectorStore = milvusVectorStore;
         this.eventPublisher = eventPublisher;
@@ -184,6 +188,8 @@ public class DocumentIngestionService {
     }
 
     public void deleteDocument(String documentId) {
+        milvusVectorStore.deleteByDocumentId(documentId);
+        elasticsearchSearchIndexService.deleteByDocumentId(documentId);
         chunkRepository.deleteByDocumentId(documentId);
         documentRepository.deleteById(documentId);
     }
@@ -201,6 +207,12 @@ public class DocumentIngestionService {
         document.setContentLength(parseResult.content().length());
 
         List<String> chunks = split(parseResult);
+
+        if (chunks.isEmpty()) {
+            throw new IllegalStateException(
+                    "No chunks generated from parsed document: " + document.getId()
+            );
+        }
 
         if (replaceExistingData) {
             chunkRepository.deleteByDocumentId(document.getId());

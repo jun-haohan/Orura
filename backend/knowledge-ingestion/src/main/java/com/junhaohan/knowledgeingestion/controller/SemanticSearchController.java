@@ -34,6 +34,7 @@ public class SemanticSearchController {
 
         return semanticSearchService.search(
                 request.getQuery(),
+                request.getDocumentIds(),
                 topK
         );
     }

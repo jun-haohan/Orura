@@ -3,6 +3,7 @@ package com.junhaohan.knowledgeingestion.controller;
 import com.junhaohan.knowledgeingestion.domain.DocumentChunk;
 import com.junhaohan.knowledgeingestion.domain.KnowledgeDocument;
 import com.junhaohan.knowledgeingestion.dto.DocumentUploadResponse;
+import com.junhaohan.knowledgeingestion.retrieval.reindex.ReindexService;
 import com.junhaohan.knowledgeingestion.service.DocumentIngestionService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,9 +16,11 @@ import java.util.List;
 public class DocumentController {
 
     private final DocumentIngestionService documentIngestionService;
+    private final ReindexService reindexService;
 
-    public DocumentController(DocumentIngestionService documentIngestionService) {
+    public DocumentController(DocumentIngestionService documentIngestionService, ReindexService reindexService) {
         this.documentIngestionService = documentIngestionService;
+        this.reindexService = reindexService;
     }
 
     /**
@@ -79,10 +82,18 @@ public class DocumentController {
     }
 
     /**
-     * 输出指定文件的解析结果
+     * 输出指定文件的解析结果到tmp_output.txt文件
      */
     @PostMapping("/{id}/chunks/export")
     public void exportChunks(@PathVariable String id) throws IOException {
         documentIngestionService.exportChunks(id);
+    }
+
+    /**
+     * 重建指定文档的检索索引。
+     */
+    @PostMapping("/{id}/reindex")
+    public void reindex(@PathVariable String id) {
+        reindexService.reindex(id);
     }
 }

@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /*
     向量库操作 CRUD
@@ -105,7 +106,10 @@ public class MilvusVectorStore {
      */
     public List<VectorSearchHit> search(
             List<Float> queryVector,
+            List<String> documentIds,
             int topK) {
+
+        String documentIdsFilter = buildDocumentFilter(documentIds);
 
         SearchResp response = client.search(
                 SearchReq.builder()
@@ -113,6 +117,7 @@ public class MilvusVectorStore {
                         .annsField("embedding")
                         .data(List.of(new FloatVec(queryVector)))
                         .topK(topK)
+                        .filter(documentIdsFilter)
                         .outputFields(List.of(
                                 "document_id",
                                 "chunk_index"
@@ -153,6 +158,43 @@ public class MilvusVectorStore {
                 documentId,
                 chunkIndex,
                 result.getScore()
+        );
+    }
+
+    /**
+     * 构造文档范围过滤表达式。
+     */
+    private String buildDocumentFilter(List<String> documentIds) {
+        if (documentIds == null || documentIds.isEmpty()) {
+            return "";
+        }
+
+        String values = documentIds.stream()
+                .map(this::escapeMilvusString)
+                .map(id -> "\"" + id + "\"")
+                .collect(Collectors.joining(","));
+
+        return "document_id in [" + values + "]";
+    }
+
+    /**
+     * 转义 Milvus 字符串值。
+     */
+    private String escapeMilvusString(String value) {
+        return value
+                .replace("\\", "\\\\")
+                .replace("\"", "\\\"");
+    }
+
+    /**
+     * 清空全部向量数据，但保留 Collection、Schema 和索引。
+     */
+    public void clearAll() {
+        client.delete(
+                DeleteReq.builder()
+                        .collectionName(properties.getCollectionName())
+                        .filter("chunk_id != \"\"")
+                        .build()
         );
     }
 }

@@ -50,7 +50,7 @@ public class MarkdownHeaderSplitter implements ChunkSplitter{
 
     private void addSection(List<MarkdownSection> sections, String header, StringBuilder content) {
         String text = content.toString().trim();
-        if (!header.isBlank() || text.isBlank()) {
+        if (!header.isBlank() || !text.isBlank()) {
             sections.add(new MarkdownSection(header, text));
         }
     }

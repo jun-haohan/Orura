@@ -10,6 +10,8 @@ from app.schemas import (
     EmbeddingResponse,
     HealthResponse
 )
+from FlagEmbedding import FlagReranker
+from pydantic import BaseModel
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -83,4 +85,27 @@ async def debug(request: Request):
     return {
         "content_type": request.headers.get("content-type"),
         "body": body.decode("utf-8")
+    }
+
+class RerankRequest(BaseModel):
+    """重排请求。"""
+    query: str
+    documents: list[str]
+
+reranker = FlagReranker(
+    "BAAI/bge-reranker-v2-m3",
+    use_fp16=True
+)
+
+def rerank(query: str, documents: list[str]) -> list[float]:
+    """计算查询与候选文档的相关性分数。"""
+    pairs = [[query, document] for document in documents]
+    scores = reranker.compute_score(pairs, normalize=True)
+    return scores if isinstance(scores, list) else [scores]
+
+@app.post("/rerank")
+def rerank_api(request: RerankRequest):
+    """对候选文档进行相关性重排。"""
+    return {
+        "scores": rerank(request.query, request.documents)
     }

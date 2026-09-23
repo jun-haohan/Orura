@@ -1,5 +1,7 @@
 server:
   port: 18400
+  tomcat:
+    max-part-header-size: 2KB
 
 spring:
   application:
@@ -14,6 +16,11 @@ spring:
     host: localhost
     port: 27017
     database: akp
+
+  elasticsearch:
+    uris: http://localhost:19200
+    connection-timeout: 5s
+    socket-timeout: 10s
 
 milvus:
   uri: http://localhost:19530

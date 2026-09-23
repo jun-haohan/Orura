@@ -43,14 +43,6 @@ public class DocumentEmbeddingService {
 
         validateDocument(document);
 
-        List<DocumentChunk> chunks =
-                chunkRepository.findByDocumentIdOrderByChunkIndexAsc(documentId);
-
-        if (chunks.isEmpty()) {
-            throw new IllegalStateException(
-                    "No chunks found for document: " + documentId);
-        }
-
         document.setEmbeddingStatus(EmbeddingStatus.PROCESSING);
         document.setEmbeddingErrorMessage(null);
         document.setEmbeddingStartedAt(LocalDateTime.now());
@@ -58,6 +50,14 @@ public class DocumentEmbeddingService {
         documentRepository.save(document);
 
         try {
+            List<DocumentChunk> chunks =
+                    chunkRepository.findByDocumentIdOrderByChunkIndexAsc(documentId);
+
+            if (chunks.isEmpty()) {
+                throw new IllegalStateException(
+                        "No chunks found for document: " + documentId);
+            }
+
             // 防止重新向量化时存在旧数据或上次失败留下部分数据
             milvusVectorStore.deleteByDocumentId(documentId);
 
@@ -224,14 +224,8 @@ public class DocumentEmbeddingService {
     /**
      * 验证指定文档对应的 Milvus 向量数量。
      */
-    public void checkVectors(String documentId) {
-        long count = milvusVectorStore.countByDocumentId(documentId);
-
-        log.info(
-                "CheckVectors: documentId={}, vectorCount={}",
-                documentId,
-                count
-        );
+    public long checkVectors(String documentId) {
+        return milvusVectorStore.countByDocumentId(documentId);
     }
 
     /**

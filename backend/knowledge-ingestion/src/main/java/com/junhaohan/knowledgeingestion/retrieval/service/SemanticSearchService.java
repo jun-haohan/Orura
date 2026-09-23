@@ -24,6 +24,7 @@ public class SemanticSearchService {
      */
     public List<SemanticSearchResult> search(
             String query,
+            List<String> documentIds,
             int topK) {
 
         if (query == null || query.isBlank()) {
@@ -42,6 +43,7 @@ public class SemanticSearchService {
         List<VectorSearchHit> hits =
                 milvusVectorStore.search(
                         vectors.get(0),
+                        documentIds,
                         topK
                 );
 

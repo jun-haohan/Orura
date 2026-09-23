@@ -38,8 +38,8 @@ public class DocumentEmbeddingController {
      * 验证指定文档对应的 Milvus 向量数量。
      */
     @PostMapping("/{documentId}/embedding/vectors")
-    public void checkVectors(@PathVariable String documentId) {
-        documentEmbeddingService.checkVectors(documentId);
+    public long checkVectors(@PathVariable String documentId) {
+        return documentEmbeddingService.checkVectors(documentId);
     }
 
     /**
