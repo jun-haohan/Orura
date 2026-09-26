@@ -35,3 +35,22 @@ embedding:
 parser:
   service:
     url: http://localhost:19002
+
+llm:
+  base-url: ${LLM_BASE_URL:http://127.0.0.1:19004/v1}
+  model: ${LLM_MODEL:Qwen/Qwen3-8B-AWQ}
+  api-key: ${LLM_API_KEY:}
+  connect-timeout-seconds: 5
+  request-timeout-seconds: 120
+  max-output-tokens: 512
+  temperature: 0
+
+rag:
+  context:
+    max-chars: ${RAG_CONTEXT_MAX_CHARS:4000}
+    max-chunk-chars: ${RAG_CHUNK_MAX_CHARS:1200}
+  prompt:
+    max-question-chars: ${RAG_QUESTION_MAX_CHARS:1000}
+  retrieval:
+    max-top-k: 10
+    candidate-top-k: 30

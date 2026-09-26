@@ -63,7 +63,7 @@ public class DocumentIngestionService {
 
     private static final String STORAGE_DIR = "data/uploads";
 
-    private static final long MAX_FILE_SIZE = 10 * 1024 * 1024;
+    private static final long MAX_FILE_SIZE = 15L * 1024 * 1024;
 
     private final ObjectMapper objectMapper;
 
@@ -95,7 +95,7 @@ public class DocumentIngestionService {
         }
 
         if (file.getSize() > MAX_FILE_SIZE) {
-            throw new IllegalArgumentException("File size more than 10MB");
+            throw new IllegalArgumentException("File size more than 15MB");
         }
 
         String filename = file.getOriginalFilename();
@@ -108,7 +108,6 @@ public class DocumentIngestionService {
             System.out.println(fileType);
             throw new IllegalArgumentException("File type not supported: " + fileType);
         }
-        System.out.println("validate success");
     }
 
     public DocumentUploadResponse upload(MultipartFile file) throws Exception {

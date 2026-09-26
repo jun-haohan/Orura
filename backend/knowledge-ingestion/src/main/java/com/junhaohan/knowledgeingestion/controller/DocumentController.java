@@ -36,7 +36,6 @@ public class DocumentController {
      */
     @PostMapping("/upload")
     public DocumentUploadResponse upload(@RequestParam("file") MultipartFile file) throws Exception {
-        System.out.println("start upload");
         return documentIngestionService.upload(file);
     }
 

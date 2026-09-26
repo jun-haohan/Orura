@@ -1,5 +1,6 @@
 package com.junhaohan.knowledgeingestion.common;
 
+import com.junhaohan.knowledgeingestion.rag.llm.LlmClientException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/** 将控制器异常转换为统一 HTTP 错误响应。 */
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -60,9 +62,17 @@ public class GlobalExceptionHandler {
         );
     }
 
-    /**
-     * 未知异常兜底
-     */
+    /** 将模型服务超时或故障转换为网关错误。 */
+    @ExceptionHandler(LlmClientException.class)
+    public ResponseEntity<Map<String, Object>> handleLlmClient(LlmClientException e) {
+        log.error("模型服务调用失败", e);
+        return buildResponse(
+                e.isTimeout() ? HttpStatus.GATEWAY_TIMEOUT : HttpStatus.BAD_GATEWAY,
+                e.getMessage()
+        );
+    }
+
+    /** 未知异常兜底。 */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleException(Exception e) {
 
@@ -74,6 +84,7 @@ public class GlobalExceptionHandler {
         );
     }
 
+    /** 生成统一错误响应。 */
     private ResponseEntity<Map<String, Object>> buildResponse(
             HttpStatus status,
             String message) {
@@ -85,6 +96,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(status).body(body);
     }
 
+    /** 提取非空异常信息。 */
     private String getMessage(Throwable e) {
         if (e.getMessage() != null && !e.getMessage().isBlank()) {
             return e.getMessage();
