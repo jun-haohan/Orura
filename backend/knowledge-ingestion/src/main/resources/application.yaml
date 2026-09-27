@@ -54,3 +54,13 @@ rag:
   retrieval:
     max-top-k: 10
     candidate-top-k: 30
+
+agent:
+  max-steps: 4
+  model-timeout-seconds: 30
+  step-timeout-seconds: 60
+  total-timeout-seconds: 180
+  max-task-chars: 1000
+  max-step-summary-chars: 160
+  max-tool-result-chars: 2000
+  model-temperature: 0.0

@@ -1,0 +1,238 @@
+{
+  "generatedAt": "2026-09-27T03:13:07.987766+00:00",
+  "declaredModel": "Qwen/Qwen3-8B-AWQ",
+  "baseUrl": "http://127.0.0.1:18400",
+  "caseFile": "datasets/agent/cases.jsonl",
+  "note": "关键词和轨迹检查只用于发现异常；事实是否受所引 Chunk 支持需人工复核。",
+  "summary": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "byType": {
+      "single": {
+        "total": 4,
+        "passed": 4
+      },
+      "multi": {
+        "total": 0,
+        "passed": 0
+      }
+    },
+    "failureReasons": {},
+    "medianMs": 1072,
+    "p95Ms": 4520
+  },
+  "cases": [
+    {
+      "id": "S01",
+      "type": "single",
+      "sourceCaseId": "SC001",
+      "passed": true,
+      "request": {
+        "task": "请使用 rag_ask 查询知识库，仅依据文档回答并注明引用：《节能装备高质量发展实施方案（2026—2028年）》提出，到2028年节能装备发展要达到哪些总体成效？",
+        "allowedTools": [
+          "rag_ask"
+        ],
+        "maxSteps": 1
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "到2028年，节能装备发展总体成效包括：节能装备关键材料、零部件取得突破，重点行业领域用能系统匹配性、实际运行效率持续提升，电机、变压器等节能装备能效水平达到国际领先，节能装备市场占有率进一步提高，推广一批先进适用节能装备更新改造系统解决方案，打造一批人工智能赋能节能装备应用场景，培育一批具有国际竞争力的节能装备骨干企业和产业集群 [1]。此外，重点行业能效水平显著提升，如钢铁、电解铝、水泥等工业重点行业达到现行能效标杆水平的产能比例平均提高20个百分点，煤电行业力争提高15个百分点，能效基准水平以下产能基本清零，累计形成节能量1亿吨标准煤以上、减排二氧化碳2亿吨以上 [2]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43b775378c05064f86132",
+            "chunkId": "6ab43b785378c05064f86134",
+            "snippet": "## 一、总体要求\n\n坚持以习近平新时代中国特色社会主义思想为指导，深入贯 彻党的二十大和二十届历次全会精神， 全面贯彻习近平生态文明 思想，完整准确全面贯彻新发展理念，一以贯之坚持节约优先 方针，以推动重点行业领域节能降碳为目标，以用能系统优化提 升为主攻方向，以先进技术装备研发和应用为主要抓手，以绿色 设计制造、设"
+          },
+          {
+            "ref": 2,
+            "documentId": "6ab43baa5378c05064f8624c",
+            "chunkId": "6ab43bab5378c05064f8624e",
+            "snippet": "## 一、总体要求\n\n以习近平新时代中国特色社会主义思想为指导，全面贯彻党的 二十大和二十届历次全会精神，贯彻落实中央经济工作会议部署， 坚持稳中求进工作总基调，完整准确全面贯彻新发展理念，一以贯 之坚持节约优先方针，深入推进重点行业节能降碳改造，全面提升 行业能效碳效水平，加快绿色低碳转型步伐，为推进和实现碳达峰 提"
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "到2028年，节能装备发展总体成效包括：节能装备关键材料、零部件取得突破，重点行业领域用能系统匹配性、实际运行效率持续提升，电机、变压器等节能装备能效水平达到国际领先，节能装备市场占有率进一步提高，推广一批先进适用节能装备更新改造系统解决方案，打造一批人工智能赋能节能装备应用场景，培育一批具有国际竞争力的节能装备骨干企"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [],
+      "durationMs": 4520
+    },
+    {
+      "id": "S08",
+      "type": "single",
+      "sourceCaseId": "DF001",
+      "passed": true,
+      "request": {
+        "task": "请使用 rag_ask 查询知识库，仅依据文档回答并注明引用：仅根据指定的《制造业中试平台建设指引（2025版）》，中试平台提供哪五类验证服务？",
+        "allowedTools": [
+          "rag_ask"
+        ],
+        "maxSteps": 1,
+        "documentIds": [
+          "6ab43c1f5378c05064f8648d"
+        ]
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "中试平台提供的五类验证服务包括设计验证、功能性性能验证、工艺验证、适配验证和生产验证 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43c1f5378c05064f8648d",
+            "chunkId": "6ab43c1f5378c05064f8648f",
+            "snippet": "## 一、功能定位\n\n制造业中试平台是为处在试制阶段的样品转化到生产过程 提供中试服务的载体，其主要功能是面向制造业发展需求，汇聚 各类产业资源，推动科技成果产业化应用，提供设计验证、功能 性能验证、工艺验证、适配验证、生产验证等综合性、专业化服 务和系统化解决方案。中试平台通过设计验证，确定产品的结构 强度等指标参数"
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "中试平台提供的五类验证服务包括设计验证、功能性性能验证、工艺验证、适配验证和生产验证 [1]。"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [],
+      "durationMs": 1241
+    },
+    {
+      "id": "S09",
+      "type": "single",
+      "sourceCaseId": "IE001",
+      "passed": true,
+      "request": {
+        "task": "请使用 rag_ask 仅依据已上传资料回答，找不到依据就明确说证据不足：阿波罗11号登月舱在月面着陆的精确UTC时间是什么？",
+        "allowedTools": [
+          "rag_ask"
+        ],
+        "maxSteps": 1
+      },
+      "response": {
+        "status": "INSUFFICIENT_EVIDENCE",
+        "answer": "无法根据提供的资料确认。",
+        "citations": [],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "无法根据提供的资料确认。"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [],
+      "durationMs": 903
+    },
+    {
+      "id": "S10",
+      "type": "single",
+      "sourceCaseId": null,
+      "passed": true,
+      "request": {
+        "task": "请使用 calculator 计算 40 - 32，并回答差值。",
+        "allowedTools": [
+          "calculator"
+        ],
+        "maxSteps": 1
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "40 - 32 的差值是 8。",
+        "citations": [],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "calculator",
+            "status": "SUCCEEDED",
+            "summary": "40 - 32 = 8"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [],
+      "durationMs": 338
+    }
+  ]
+}

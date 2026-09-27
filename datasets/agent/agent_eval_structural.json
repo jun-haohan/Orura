@@ -1,0 +1,93 @@
+{
+  "generatedAt": "2026-09-27T12:55:48.900231+00:00",
+  "declaredModel": "Qwen/Qwen3-8B-AWQ",
+  "baseUrl": "http://127.0.0.1:18400",
+  "caseFile": "datasets/agent/cases.jsonl",
+  "note": "关键词和轨迹检查只用于发现异常；事实是否受所引 Chunk 支持需人工复核。",
+  "summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "byType": {
+      "single": {
+        "total": 0,
+        "passed": 0
+      },
+      "multi": {
+        "total": 1,
+        "passed": 1
+      }
+    },
+    "failureReasons": {},
+    "medianMs": 1691,
+    "p95Ms": 1691
+  },
+  "cases": [
+    {
+      "id": "M06",
+      "type": "multi",
+      "sourceCaseId": "SC022",
+      "passed": true,
+      "request": {
+        "task": "请先使用 rag_ask 查询已上传文档，分别找出2028年中国消费名品与百亿规模龙头企业的数量目标；再使用 absolute_difference 计算两个目标数值相差多少。",
+        "allowedTools": [
+          "rag_ask",
+          "absolute_difference"
+        ],
+        "maxSteps": 2
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "到 2028 年，中国计划培育 50 家百亿规模龙头企业，并塑造 100 个中国消费名品。这两个目标数值相差 50 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43ba25378c05064f8622a",
+            "chunkId": "6ab43ba35378c05064f8622c",
+            "snippet": "## 一、总体要求\n\n以习近平新时代中国特色社会主义思想为指导，深入贯 彻党的二十大和二十届历次全会精神，认真落实四中全会部 署，坚持扩内需、惠民生、促消费紧密结合，把握好继承传 统根脉与加强时代创新、激发文化价值与创造经济效益、保 持民族特色与接轨国际时尚的关系，巩固提升历史经典产业 在全球产业分工中的地位和竞争力。"
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "到 2028 年，中国计划培育 50 家百亿规模龙头企业，并塑造 100 个中国消费名品 [1]。\n原文证据 [1]：## 一、总体要求\n\n以习近平新时代中国特色社会主义思想为指导，深入贯 彻党的二十大和二十届历次全会精神，认真落实四中全会部 署，坚持扩内需、惠民生、促消费紧密结合，把握好继承传 统根脉与加强时代创新、"
+          },
+          {
+            "index": 2,
+            "tool": "absolute_difference",
+            "status": "SUCCEEDED",
+            "summary": "50 与 100 的绝对差 = 50"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "answerMagnitude": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        },
+        {
+          "index": 2,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [],
+      "durationMs": 1691
+    }
+  ]
+}

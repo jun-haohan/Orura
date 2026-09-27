@@ -1,0 +1,222 @@
+{
+  "generatedAt": "2026-09-27T03:13:24.945208+00:00",
+  "declaredModel": "Qwen/Qwen3-8B-AWQ",
+  "baseUrl": "http://127.0.0.1:18400",
+  "caseFile": "datasets/agent/cases.jsonl",
+  "note": "关键词和轨迹检查只用于发现异常；事实是否受所引 Chunk 支持需人工复核。",
+  "summary": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0,
+    "byType": {
+      "single": {
+        "total": 0,
+        "passed": 0
+      },
+      "multi": {
+        "total": 3,
+        "passed": 3
+      }
+    },
+    "failureReasons": {},
+    "medianMs": 1498,
+    "p95Ms": 1838
+  },
+  "cases": [
+    {
+      "id": "M01",
+      "type": "multi",
+      "sourceCaseId": "SC007",
+      "passed": true,
+      "request": {
+        "task": "请先使用 rag_ask 依据已上传文档查出新能源乘用车和商用车到2030年的新车销量占比目标，计算两者目标数值相差多少个百分点。再使用 calculator 根据查到的数值计算，最后注明文档来源。",
+        "allowedTools": [
+          "rag_ask",
+          "calculator"
+        ],
+        "maxSteps": 2
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "新能源乘用车和商用车到2030年的新车销量占比目标相差30个百分点。该结果依据文档 [1] 中的信息得出。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43b8a5378c05064f861a3",
+            "chunkId": "6ab43b8b5378c05064f861a5",
+            "snippet": "## 一、总体要求\n\n坚持以习近平新时代中国特色社会主义思想为指导，深入 贯彻党的二十大和二十届历次全会精神，认真落实四中全会部 署，完整准确全面贯彻新发展理念，加快构建新发展格局，锚 定基本实现新型工业化目标，统筹发展和安全，以推动高质量 发展为主题，把握智能化、绿色化、融合化发展方向，坚持创 新驱动、安全为要、跨界"
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "到2030年，新能源乘用车和商用车在各自领域新车总销量的占比分别达到70%和40% [1]。"
+          },
+          {
+            "index": 2,
+            "tool": "calculator",
+            "status": "SUCCEEDED",
+            "summary": "70 - 40 = 30"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        },
+        {
+          "index": 2,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [],
+      "durationMs": 1838
+    },
+    {
+      "id": "M02",
+      "type": "multi",
+      "sourceCaseId": "SC020",
+      "passed": true,
+      "request": {
+        "task": "请先使用 rag_ask 依据已上传文档查出沿海城市与海岛到2030年的新增海水淡化工程规模目标，计算两部分规模之和，单位为万吨/日。再使用 calculator 根据查到的数值计算，最后注明文档来源。",
+        "allowedTools": [
+          "rag_ask",
+          "calculator"
+        ],
+        "maxSteps": 2
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "到2030年，沿海城市与海岛新增海水淡化工程规模目标之和为150万吨/日，数据来源于文档 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43ba05378c05064f86222",
+            "chunkId": "6ab43ba05378c05064f86224",
+            "snippet": "## 一、总体要求\n\n以习近平新时代中国特色社会主义思想为指导，深入贯彻党的 二十大和二十届历次全会精神，完整准确全面贯彻新发展理念，加 快构建新发展格局，聚焦水资源节约保护与海洋强国建设战略目 标，坚持市场化推进原则，以拓展应用场景为主线，以强化科技创 新为动力，以健全政策标准为保障，促进海水淡化科技与产业创新 深度"
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "到2030年，沿海城市新增海水淡化工程规模为130万吨/日，海岛新增海水淡化工程规模为20万吨/日 [1]。"
+          },
+          {
+            "index": 2,
+            "tool": "calculator",
+            "status": "SUCCEEDED",
+            "summary": "130 + 20 = 150"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        },
+        {
+          "index": 2,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [],
+      "durationMs": 1469
+    },
+    {
+      "id": "M03",
+      "type": "multi",
+      "sourceCaseId": "SC018",
+      "passed": true,
+      "request": {
+        "task": "请先使用 rag_ask 依据已上传文档查出到2030年社会物流总费用与GDP的比率目标，以及较“十四五”末的下降幅度，反推“十四五”末的比率，单位为百分比。再使用 calculator 根据查到的数值计算，最后注明文档来源。",
+        "allowedTools": [
+          "rag_ask",
+          "calculator"
+        ],
+        "maxSteps": 2
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "“十四五”末的比率是13.9%，到2030年的目标为13.1%，较“十四五”末下降了0.8个百分点 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43b9a5378c05064f86205",
+            "chunkId": "6ab43b9b5378c05064f86207",
+            "snippet": "## 一、总体要求\n\n坚持以习近平新时代中国特色社会主义思想为指导，深入贯彻 党的二十大和二十届历次全会精神，完整准确全面贯彻新发展理 念，统筹发展和安全，统筹'大动脉'和'微循环' 、 '硬建设'和 '软联通' 、 '内流通'和'外联通' ，加快补短板、畅联通、提能 级，坚持做优增量与提升存量并重，强化技术赋能和系统"
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "到2030年，社会物流总费用与GDP的比率目标为13.1%，较“十四五”末降低0.8个百分点 [1]。"
+          },
+          {
+            "index": 2,
+            "tool": "calculator",
+            "status": "SUCCEEDED",
+            "summary": "13.1 + 0.8 = 13.9"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        },
+        {
+          "index": 2,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [],
+      "durationMs": 1498
+    }
+  ]
+}

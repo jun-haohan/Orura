@@ -1,0 +1,1230 @@
+{
+  "generatedAt": "2026-09-27T03:14:35.242040+00:00",
+  "declaredModel": "Qwen/Qwen3-8B-AWQ",
+  "baseUrl": "http://127.0.0.1:18400",
+  "caseFile": "datasets/agent/cases.jsonl",
+  "note": "关键词和轨迹检查只用于发现异常；事实是否受所引 Chunk 支持需人工复核。",
+  "summary": {
+    "total": 20,
+    "passed": 15,
+    "failed": 5,
+    "byType": {
+      "single": {
+        "total": 10,
+        "passed": 9
+      },
+      "multi": {
+        "total": 10,
+        "passed": 6
+      }
+    },
+    "failureReasons": {
+      "answerKeywords": 2,
+      "calculation": 4
+    },
+    "medianMs": 1356,
+    "p95Ms": 2101
+  },
+  "cases": [
+    {
+      "id": "S01",
+      "type": "single",
+      "sourceCaseId": "SC001",
+      "passed": true,
+      "request": {
+        "task": "请使用 rag_ask 查询知识库，仅依据文档回答并注明引用：《节能装备高质量发展实施方案（2026—2028年）》提出，到2028年节能装备发展要达到哪些总体成效？",
+        "allowedTools": [
+          "rag_ask"
+        ],
+        "maxSteps": 1
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "到2028年，节能装备发展总体成效包括：节能装备关键材料、零部件取得突破，重点行业领域用能系统匹配性、实际运行效率持续提升，电机、变压器等节能装备能效水平达到国际领先，节能装备市场占有率进一步提高，推广一批先进适用节能装备更新改造系统解决方案，打造一批人工智能赋能节能装备应用场景，培育一批具有国际竞争力的节能装备骨干企业和产业集群 [1]。此外，重点行业能效水平显著提升，如钢铁、电解铝、水泥等工业重点行业达到现行能效标杆水平的产能比例平均提高20个百分点，煤电行业力争提高15个百分点，能效基准水平以下产能基本清零，累计形成节能量1亿吨标准煤以上、减排二氧化碳2亿吨以上 [2]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43b775378c05064f86132",
+            "chunkId": "6ab43b785378c05064f86134",
+            "snippet": "## 一、总体要求\n\n坚持以习近平新时代中国特色社会主义思想为指导，深入贯 彻党的二十大和二十届历次全会精神， 全面贯彻习近平生态文明 思想，完整准确全面贯彻新发展理念，一以贯之坚持节约优先 方针，以推动重点行业领域节能降碳为目标，以用能系统优化提 升为主攻方向，以先进技术装备研发和应用为主要抓手，以绿色 设计制造、设"
+          },
+          {
+            "ref": 2,
+            "documentId": "6ab43baa5378c05064f8624c",
+            "chunkId": "6ab43bab5378c05064f8624e",
+            "snippet": "## 一、总体要求\n\n以习近平新时代中国特色社会主义思想为指导，全面贯彻党的 二十大和二十届历次全会精神，贯彻落实中央经济工作会议部署， 坚持稳中求进工作总基调，完整准确全面贯彻新发展理念，一以贯 之坚持节约优先方针，深入推进重点行业节能降碳改造，全面提升 行业能效碳效水平，加快绿色低碳转型步伐，为推进和实现碳达峰 提"
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "到2028年，节能装备发展总体成效包括：节能装备关键材料、零部件取得突破，重点行业领域用能系统匹配性、实际运行效率持续提升，电机、变压器等节能装备能效水平达到国际领先，节能装备市场占有率进一步提高，推广一批先进适用节能装备更新改造系统解决方案，打造一批人工智能赋能节能装备应用场景，培育一批具有国际竞争力的节能装备骨干企"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [],
+      "durationMs": 3454
+    },
+    {
+      "id": "S02",
+      "type": "single",
+      "sourceCaseId": "SC003",
+      "passed": true,
+      "request": {
+        "task": "请使用 rag_ask 查询知识库，仅依据文档回答并注明引用：节水装备方案对2027年和2030年分别设定了什么阶段目标？",
+        "allowedTools": [
+          "rag_ask"
+        ],
+        "maxSteps": 1
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "到2027年，节水装备在重点领域供水、用水和循环利用等方面取得突破，掌握一批具有自主知识产权的核心技术，高效循环冷却、高端膜分离、智慧用水管控等技术装备实现产业化应用 [1]。\n\n到2030年，构建覆盖全面、技术先进的节水装备体系，高性能、高效率、高可靠性的节水装备供给能力持续增强，节水装备制造达到世界先进水平 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43b805378c05064f86162",
+            "chunkId": "6ab43b805378c05064f86165",
+            "snippet": "## 一、总体要求\n\n以习近平新时代中国特色社会主义思想为指导，贯彻落 实党的二十大和二十届二中、三中全会精神，全面贯彻习近 平生态文明思想，完整、准确、全面贯彻新发展理念，深入 践行'节水优先、空间均衡、系统治理、两手发力'治水思 路，聚焦重点缺水、水资源超载、水环境敏感、水生态脆弱 地区和重点领域用水需求，落实水资"
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "到2027年，节水装备在重点领域供水、用水和循环利用等方面取得突破，掌握一批具有自主知识产权的核心技术，高效循环冷却、高端膜分离、智慧用水管控等技术装备实现产业化应用 [1]。\n\n到2030年，构建覆盖全面、技术先进的节水装备体系，高性能、高效率、高可靠性的节水装备供给能力持续增强，节水装备制造达到世界先进水平 [1]"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [],
+      "durationMs": 2101
+    },
+    {
+      "id": "S03",
+      "type": "single",
+      "sourceCaseId": "SC005",
+      "passed": true,
+      "request": {
+        "task": "请使用 rag_ask 查询知识库，仅依据文档回答并注明引用：安全应急装备产业到2030年的产业规模、产业集群和特色园区目标分别是多少？",
+        "allowedTools": [
+          "rag_ask"
+        ],
+        "maxSteps": 1
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "到2030年，安全应急装备产业规模目标为1.4万亿元 [1]，产业集群目标为建设10个竞争力强的安全应急装备产业集群 [1]，特色园区目标为建设70个安全应急装备产业特色园区 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43b875378c05064f86193",
+            "chunkId": "6ab43b885378c05064f86195",
+            "snippet": "## 一、总体要求\n\n坚持以习近平新时代中国特色社会主义思想为指导，深入 贯彻党的二十大和二十届历次全会精神，认真落实四中全会部 署，完整准确全面贯彻新发展理念，加快构建新发展格局，强 化底线思维、极限思维，坚持以人民为中心的发展思想，统筹 发展和安全，锚定基本实现新型工业化目标，以推动高质量发 展为主题，坚持创新驱动"
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "到2030年，安全应急装备产业规模目标为1.4万亿元 [1]。产业集群目标为建设10个竞争力强的安全应急装备产业集群 [1]。特色园区目标为建设70个安全应急装备产业特色园区 [1]。"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [],
+      "durationMs": 1643
+    },
+    {
+      "id": "S04",
+      "type": "single",
+      "sourceCaseId": "SC007",
+      "passed": false,
+      "request": {
+        "task": "请使用 rag_ask 查询知识库，仅依据文档回答并注明引用：智能网联新能源汽车规划给出的2030年新能源车销量占比和乘用车能耗指标是什么？",
+        "allowedTools": [
+          "rag_ask"
+        ],
+        "maxSteps": 1
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "到 2030 年，我国新能源乘用车销量占比将达到 70% [1]，乘用车平均燃料消耗量达到每百公里 3.3 升，纯电动乘用车平均电能消耗量达到每百公里 11.5 千瓦时左右 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43b8a5378c05064f861a3",
+            "chunkId": "6ab43b8b5378c05064f861a5",
+            "snippet": "## 一、总体要求\n\n坚持以习近平新时代中国特色社会主义思想为指导，深入 贯彻党的二十大和二十届历次全会精神，认真落实四中全会部 署，完整准确全面贯彻新发展理念，加快构建新发展格局，锚 定基本实现新型工业化目标，统筹发展和安全，以推动高质量 发展为主题，把握智能化、绿色化、融合化发展方向，坚持创 新驱动、安全为要、跨界"
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "到 2030 年，我国新能源乘用车销量占比将达到 70% [1]，乘用车平均燃料消耗量达到每百公里 3.3 升，纯电动乘用车平均电能消耗量达到每百公里 11.5 千瓦时左右 [1]。"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": false,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [
+        "40%"
+      ],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [
+        "answerKeywords"
+      ],
+      "durationMs": 1710
+    },
+    {
+      "id": "S05",
+      "type": "single",
+      "sourceCaseId": "SC018",
+      "passed": true,
+      "request": {
+        "task": "请使用 rag_ask 查询知识库，仅依据文档回答并注明引用：物流网建设方案提出到2030年社会物流总费用与GDP的比率降到多少，较“十四五”末下降多少？",
+        "allowedTools": [
+          "rag_ask"
+        ],
+        "maxSteps": 1
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "到2030年，社会物流总费用与GDP的比率降至13.1%，较“十四五”末降低0.8个百分点 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43b9a5378c05064f86205",
+            "chunkId": "6ab43b9b5378c05064f86207",
+            "snippet": "## 一、总体要求\n\n坚持以习近平新时代中国特色社会主义思想为指导，深入贯彻 党的二十大和二十届历次全会精神，完整准确全面贯彻新发展理 念，统筹发展和安全，统筹'大动脉'和'微循环' 、 '硬建设'和 '软联通' 、 '内流通'和'外联通' ，加快补短板、畅联通、提能 级，坚持做优增量与提升存量并重，强化技术赋能和系统"
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "到2030年，社会物流总费用与GDP的比率降至13.1%，较“十四五”末降低0.8个百分点 [1]。"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [],
+      "durationMs": 1268
+    },
+    {
+      "id": "S06",
+      "type": "single",
+      "sourceCaseId": "SC020",
+      "passed": true,
+      "request": {
+        "task": "请使用 rag_ask 查询知识库，仅依据文档回答并注明引用：海水淡化行动方案到2030年的工程总规模、新增规模及其沿海城市和海岛分项分别是多少？",
+        "allowedTools": [
+          "rag_ask"
+        ],
+        "maxSteps": 1
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "到2030年，全国海水淡化工程总规模将达到450万吨/日以上，新增海水淡化工程规模150万吨/日以上，其中沿海城市新增130万吨/日，海岛新增20万吨/日 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43ba05378c05064f86222",
+            "chunkId": "6ab43ba05378c05064f86224",
+            "snippet": "## 一、总体要求\n\n以习近平新时代中国特色社会主义思想为指导，深入贯彻党的 二十大和二十届历次全会精神，完整准确全面贯彻新发展理念，加 快构建新发展格局，聚焦水资源节约保护与海洋强国建设战略目 标，坚持市场化推进原则，以拓展应用场景为主线，以强化科技创 新为动力，以健全政策标准为保障，促进海水淡化科技与产业创新 深度"
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "到2030年，全国海水淡化工程总规模将达到450万吨/日以上，新增海水淡化工程规模150万吨/日以上，其中沿海城市新增130万吨/日、海岛新增20万吨/日 [1]。"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [],
+      "durationMs": 1609
+    },
+    {
+      "id": "S07",
+      "type": "single",
+      "sourceCaseId": "SC027",
+      "passed": true,
+      "request": {
+        "task": "请使用 rag_ask 查询知识库，仅依据文档回答并注明引用：再生材料应用方案到2030年对废钢铁、废纸、再生有色金属和再生塑料提出了哪些年度数量目标？",
+        "allowedTools": [
+          "rag_ask"
+        ],
+        "maxSteps": 1
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "到2030年，再生材料应用方案提出的年度数量目标如下：\n\n- 废钢铁年回收利用量超过3亿吨 [1]；\n- 废纸年回收利用量超过8000万吨 [1]；\n- 再生有色金属年产量超过2500万吨 [1]；\n- 再生塑料年产量超过1950万吨 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43bb85378c05064f8629c",
+            "chunkId": "6ab43bb95378c05064f8629e",
+            "snippet": "## 一、总体要求\n\n以习近平新时代中国特色社会主义思想为指导，全面贯彻党的 二十大和二十届历次全会精神，深入贯彻习近平经济思想和习近平 生态文明思想，牢固树立节约集约循环利用的资源观，以再生钢铁、 再生有色金属、再生塑料、再生纸等再生材料为重点，提升再生材 料供给保障能力，扩大再生材料应用范围，完善再生材料使用管理 "
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "到2030年，废钢铁年回收利用量超过3亿吨，废纸年回收利用量超过8000万吨，再生有色金属年产量超过2500万吨，再生塑料年产量超过1950万吨 [1]。"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [],
+      "durationMs": 1867
+    },
+    {
+      "id": "S08",
+      "type": "single",
+      "sourceCaseId": "DF001",
+      "passed": true,
+      "request": {
+        "task": "请使用 rag_ask 查询知识库，仅依据文档回答并注明引用：仅根据指定的《制造业中试平台建设指引（2025版）》，中试平台提供哪五类验证服务？",
+        "allowedTools": [
+          "rag_ask"
+        ],
+        "maxSteps": 1,
+        "documentIds": [
+          "6ab43c1f5378c05064f8648d"
+        ]
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "中试平台提供的五类验证服务包括设计验证、功能性性能验证、工艺验证、适配验证和生产验证 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43c1f5378c05064f8648d",
+            "chunkId": "6ab43c1f5378c05064f8648f",
+            "snippet": "## 一、功能定位\n\n制造业中试平台是为处在试制阶段的样品转化到生产过程 提供中试服务的载体，其主要功能是面向制造业发展需求，汇聚 各类产业资源，推动科技成果产业化应用，提供设计验证、功能 性能验证、工艺验证、适配验证、生产验证等综合性、专业化服 务和系统化解决方案。中试平台通过设计验证，确定产品的结构 强度等指标参数"
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "中试平台提供的五类验证服务包括设计验证、功能性性能验证、工艺验证、适配验证和生产验证 [1]。"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [],
+      "durationMs": 950
+    },
+    {
+      "id": "S09",
+      "type": "single",
+      "sourceCaseId": "IE001",
+      "passed": true,
+      "request": {
+        "task": "请使用 rag_ask 仅依据已上传资料回答，找不到依据就明确说证据不足：阿波罗11号登月舱在月面着陆的精确UTC时间是什么？",
+        "allowedTools": [
+          "rag_ask"
+        ],
+        "maxSteps": 1
+      },
+      "response": {
+        "status": "INSUFFICIENT_EVIDENCE",
+        "answer": "无法根据提供的资料确认。",
+        "citations": [],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "无法根据提供的资料确认。"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [],
+      "durationMs": 511
+    },
+    {
+      "id": "S10",
+      "type": "single",
+      "sourceCaseId": null,
+      "passed": true,
+      "request": {
+        "task": "请使用 calculator 计算 40 - 32，并回答差值。",
+        "allowedTools": [
+          "calculator"
+        ],
+        "maxSteps": 1
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "40 - 32 的差值是 8。",
+        "citations": [],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "calculator",
+            "status": "SUCCEEDED",
+            "summary": "40 - 32 = 8"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [],
+      "durationMs": 339
+    },
+    {
+      "id": "M01",
+      "type": "multi",
+      "sourceCaseId": "SC007",
+      "passed": true,
+      "request": {
+        "task": "请先使用 rag_ask 依据已上传文档查出新能源乘用车和商用车到2030年的新车销量占比目标，计算两者目标数值相差多少个百分点。再使用 calculator 根据查到的数值计算，最后注明文档来源。",
+        "allowedTools": [
+          "rag_ask",
+          "calculator"
+        ],
+        "maxSteps": 2
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "新能源乘用车和商用车到2030年的新车销量占比目标相差30个百分点。该结果依据文档 [1] 中的信息得出。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43b8a5378c05064f861a3",
+            "chunkId": "6ab43b8b5378c05064f861a5",
+            "snippet": "## 一、总体要求\n\n坚持以习近平新时代中国特色社会主义思想为指导，深入 贯彻党的二十大和二十届历次全会精神，认真落实四中全会部 署，完整准确全面贯彻新发展理念，加快构建新发展格局，锚 定基本实现新型工业化目标，统筹发展和安全，以推动高质量 发展为主题，把握智能化、绿色化、融合化发展方向，坚持创 新驱动、安全为要、跨界"
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "到2030年，新能源乘用车和商用车在各自领域新车总销量的占比分别达到70%和40% [1]。"
+          },
+          {
+            "index": 2,
+            "tool": "calculator",
+            "status": "SUCCEEDED",
+            "summary": "70 - 40 = 30"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        },
+        {
+          "index": 2,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [],
+      "durationMs": 1109
+    },
+    {
+      "id": "M02",
+      "type": "multi",
+      "sourceCaseId": "SC020",
+      "passed": true,
+      "request": {
+        "task": "请先使用 rag_ask 依据已上传文档查出沿海城市与海岛到2030年的新增海水淡化工程规模目标，计算两部分规模之和，单位为万吨/日。再使用 calculator 根据查到的数值计算，最后注明文档来源。",
+        "allowedTools": [
+          "rag_ask",
+          "calculator"
+        ],
+        "maxSteps": 2
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "到2030年，沿海城市与海岛新增海水淡化工程规模目标之和为150万吨/日，数据来源于文档 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43ba05378c05064f86222",
+            "chunkId": "6ab43ba05378c05064f86224",
+            "snippet": "## 一、总体要求\n\n以习近平新时代中国特色社会主义思想为指导，深入贯彻党的 二十大和二十届历次全会精神，完整准确全面贯彻新发展理念，加 快构建新发展格局，聚焦水资源节约保护与海洋强国建设战略目 标，坚持市场化推进原则，以拓展应用场景为主线，以强化科技创 新为动力，以健全政策标准为保障，促进海水淡化科技与产业创新 深度"
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "到2030年，沿海城市新增海水淡化工程规模为130万吨/日，海岛新增海水淡化工程规模为20万吨/日 [1]。"
+          },
+          {
+            "index": 2,
+            "tool": "calculator",
+            "status": "SUCCEEDED",
+            "summary": "130 + 20 = 150"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        },
+        {
+          "index": 2,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [],
+      "durationMs": 1202
+    },
+    {
+      "id": "M03",
+      "type": "multi",
+      "sourceCaseId": "SC018",
+      "passed": true,
+      "request": {
+        "task": "请先使用 rag_ask 依据已上传文档查出到2030年社会物流总费用与GDP的比率目标，以及较“十四五”末的下降幅度，反推“十四五”末的比率，单位为百分比。再使用 calculator 根据查到的数值计算，最后注明文档来源。",
+        "allowedTools": [
+          "rag_ask",
+          "calculator"
+        ],
+        "maxSteps": 2
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "“十四五”末的比率是13.9%，到2030年的目标为13.1%，较“十四五”末下降了0.8个百分点 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43b9a5378c05064f86205",
+            "chunkId": "6ab43b9b5378c05064f86207",
+            "snippet": "## 一、总体要求\n\n坚持以习近平新时代中国特色社会主义思想为指导，深入贯彻 党的二十大和二十届历次全会精神，完整准确全面贯彻新发展理 念，统筹发展和安全，统筹'大动脉'和'微循环' 、 '硬建设'和 '软联通' 、 '内流通'和'外联通' ，加快补短板、畅联通、提能 级，坚持做优增量与提升存量并重，强化技术赋能和系统"
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "到2030年，社会物流总费用与GDP的比率目标为13.1%，较“十四五”末降低0.8个百分点 [1]。"
+          },
+          {
+            "index": 2,
+            "tool": "calculator",
+            "status": "SUCCEEDED",
+            "summary": "13.1 + 0.8 = 13.9"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        },
+        {
+          "index": 2,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [],
+      "durationMs": 1319
+    },
+    {
+      "id": "M04",
+      "type": "multi",
+      "sourceCaseId": "SC054",
+      "passed": true,
+      "request": {
+        "task": "请先使用 rag_ask 依据已上传文档查出安徽综合评标评审专家库整合前后专家人数，计算专家资源增加多少万人。再使用 calculator 根据查到的数值计算，最后注明文档来源。",
+        "allowedTools": [
+          "rag_ask",
+          "calculator"
+        ],
+        "maxSteps": 2
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "安徽综合评标评审专家库整合后，专家资源增加了1.9万人。文档来源：[1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43c155378c05064f86466",
+            "chunkId": "6ab43c155378c05064f86468",
+            "snippet": "## 一、修订背景\n\n根据《安徽省公共资源交易监督管理办法》 （省政府令第 255 号）， 2015 年，省发展改革委会同各地各有关部门系统整合分散 设立的 85 个专家库资源，在全国率先实现评标评审专家 ' 多库合 一、资源共享 ' 。 2016 年，《安徽省综合评标评审专家库管理办 法》（皖政办〔 2016 〕 5"
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "整合前专家人数为1.2万人，整合后增加到3.1万人 [1]。"
+          },
+          {
+            "index": 2,
+            "tool": "calculator",
+            "status": "SUCCEEDED",
+            "summary": "3.1 - 1.2 = 1.9"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        },
+        {
+          "index": 2,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [],
+      "durationMs": 1371
+    },
+    {
+      "id": "M05",
+      "type": "multi",
+      "sourceCaseId": "SC026",
+      "passed": true,
+      "request": {
+        "task": "请先使用 rag_ask 依据已上传文档查出重点行业与煤电行业能效标杆产能比例提高幅度的目标数值，计算两者相差多少个百分点。再使用 calculator 根据查到的数值计算，最后注明文档来源。",
+        "allowedTools": [
+          "rag_ask",
+          "calculator"
+        ],
+        "maxSteps": 2
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "重点行业与煤电行业能效标杆产能比例提高幅度的目标数值相差 5 个百分点 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43baa5378c05064f8624c",
+            "chunkId": "6ab43bab5378c05064f8624e",
+            "snippet": "## 一、总体要求\n\n以习近平新时代中国特色社会主义思想为指导，全面贯彻党的 二十大和二十届历次全会精神，贯彻落实中央经济工作会议部署， 坚持稳中求进工作总基调，完整准确全面贯彻新发展理念，一以贯 之坚持节约优先方针，深入推进重点行业节能降碳改造，全面提升 行业能效碳效水平，加快绿色低碳转型步伐，为推进和实现碳达峰 提"
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "重点行业与煤电行业能效标杆产能比例提高幅度的目标数值是：重点行业平均提高 20 个百分点，煤电行业力争提高 15 个百分点 [1]。"
+          },
+          {
+            "index": 2,
+            "tool": "calculator",
+            "status": "SUCCEEDED",
+            "summary": "20 - 15 = 5"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        },
+        {
+          "index": 2,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [],
+      "durationMs": 1427
+    },
+    {
+      "id": "M06",
+      "type": "multi",
+      "sourceCaseId": "SC022",
+      "passed": false,
+      "request": {
+        "task": "请先使用 rag_ask 依据已上传文档查出2028年历史经典产业的中国消费名品与百亿规模龙头企业培育数量目标，计算两项数量目标之差。再使用 calculator 根据查到的数值计算，最后注明文档来源。",
+        "allowedTools": [
+          "rag_ask",
+          "calculator"
+        ],
+        "maxSteps": 2
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "2028年历史经典产业的中国消费名品培育数量目标为100个，百亿规模龙头企业培育数量目标为50家，两者数量目标之差为-50。该结果基于文档 [1] 的信息。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43ba25378c05064f8622a",
+            "chunkId": "6ab43ba35378c05064f8622c",
+            "snippet": "## 一、总体要求\n\n以习近平新时代中国特色社会主义思想为指导，深入贯 彻党的二十大和二十届历次全会精神，认真落实四中全会部 署，坚持扩内需、惠民生、促消费紧密结合，把握好继承传 统根脉与加强时代创新、激发文化价值与创造经济效益、保 持民族特色与接轨国际时尚的关系，巩固提升历史经典产业 在全球产业分工中的地位和竞争力。"
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "到 2028 年，目标是培育 50 家百亿规模龙头企业，塑造 100 个中国消费名品 [1]。"
+          },
+          {
+            "index": 2,
+            "tool": "calculator",
+            "status": "SUCCEEDED",
+            "summary": "50 - 100 = -50"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": false,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        },
+        {
+          "index": 2,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [
+        "calculation"
+      ],
+      "durationMs": 1521
+    },
+    {
+      "id": "M07",
+      "type": "multi",
+      "sourceCaseId": "SC027",
+      "passed": true,
+      "request": {
+        "task": "请先使用 rag_ask 依据已上传文档查出2030年废纸年回收利用量与再生有色金属年产量的目标数值，计算前者比后者多多少万吨。再使用 calculator 根据查到的数值计算，最后注明文档来源。",
+        "allowedTools": [
+          "rag_ask",
+          "calculator"
+        ],
+        "maxSteps": 2
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "2030年废纸年回收利用量比再生有色金属年产量多5500万吨，数据来源于文档 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43bb85378c05064f8629c",
+            "chunkId": "6ab43bb95378c05064f8629e",
+            "snippet": "## 一、总体要求\n\n以习近平新时代中国特色社会主义思想为指导，全面贯彻党的 二十大和二十届历次全会精神，深入贯彻习近平经济思想和习近平 生态文明思想，牢固树立节约集约循环利用的资源观，以再生钢铁、 再生有色金属、再生塑料、再生纸等再生材料为重点，提升再生材 料供给保障能力，扩大再生材料应用范围，完善再生材料使用管理 "
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "2030年废纸年回收利用量目标为8000万吨，再生有色金属年产量目标为2500万吨 [1]。"
+          },
+          {
+            "index": 2,
+            "tool": "calculator",
+            "status": "SUCCEEDED",
+            "summary": "8000 - 2500 = 5500"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        },
+        {
+          "index": 2,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [],
+      "durationMs": 1342
+    },
+    {
+      "id": "M08",
+      "type": "multi",
+      "sourceCaseId": "SC039",
+      "passed": false,
+      "request": {
+        "task": "请先使用 rag_ask 依据已上传文档查出2028年服务平台与可落地智能服务应用场景的最低数量指标，计算两个指标数值之差（只比较文件列出的数字）。再使用 calculator 根据查到的数值计算，最后注明文档来源。",
+        "allowedTools": [
+          "rag_ask",
+          "calculator"
+        ],
+        "maxSteps": 2
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "根据查到的数值，2028年服务平台与可落地智能服务应用场景的最低数量指标之差为 -50。文档来源：[1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43bdf5378c05064f8635c",
+            "chunkId": "6ab43be05378c05064f8635e",
+            "snippet": "## 一、总体要求\n\n以习近平新时代中国特色社会主义思想为指导，全面贯 彻党的二十大和二十届历次全会精神，深入落实党中央、国 务院关于促进平台经济创新健康发展的决策部署，完整准确 全面贯彻新发展理念，深刻把握平台经济发展规律，坚持问 题导向、目标导向、结果导向，系统推进平台经济大中小企 业创新协同、生态协同、开放协同，"
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "到 2028 年，打造不少于 10 个服务平台及 60 个可落地的智能服务应用场景 [1]。"
+          },
+          {
+            "index": 2,
+            "tool": "calculator",
+            "status": "SUCCEEDED",
+            "summary": "10 - 60 = -50"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": false,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        },
+        {
+          "index": 2,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [
+        "calculation"
+      ],
+      "durationMs": 1301
+    },
+    {
+      "id": "M09",
+      "type": "multi",
+      "sourceCaseId": "SC005",
+      "passed": false,
+      "request": {
+        "task": "请先使用 rag_ask 依据已上传文档查出2030年安全应急装备产业特色园区和产业集群数量目标，计算两个指标数值之差。再使用 calculator 根据查到的数值计算，最后注明文档来源。",
+        "allowedTools": [
+          "rag_ask",
+          "calculator"
+        ],
+        "maxSteps": 2
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "2030年安全应急装备产业集群数量目标为10个，特色园区数量目标为70个，两者之差为-60。该结果基于文档 [1] 提供的信息。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43b875378c05064f86193",
+            "chunkId": "6ab43b885378c05064f86195",
+            "snippet": "## 一、总体要求\n\n坚持以习近平新时代中国特色社会主义思想为指导，深入 贯彻党的二十大和二十届历次全会精神，认真落实四中全会部 署，完整准确全面贯彻新发展理念，加快构建新发展格局，强 化底线思维、极限思维，坚持以人民为中心的发展思想，统筹 发展和安全，锚定基本实现新型工业化目标，以推动高质量发 展为主题，坚持创新驱动"
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "到 2030 年，建设 10 个竞争力强的安全应急装备产业集群、70 个安全应急装备产业特色园区 [1]。"
+          },
+          {
+            "index": 2,
+            "tool": "calculator",
+            "status": "SUCCEEDED",
+            "summary": "10 - 70 = -60"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": false,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        },
+        {
+          "index": 2,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [
+        "calculation"
+      ],
+      "durationMs": 1463
+    },
+    {
+      "id": "M10",
+      "type": "multi",
+      "sourceCaseId": "SC010",
+      "passed": false,
+      "request": {
+        "task": "请先使用 rag_ask 依据已上传文档查出2030年自动监测数据有效率与运维智能化水平的目标百分比，计算两个指标目标数值之差，单位为百分点。再使用 calculator 根据查到的数值计算，最后注明文档来源。",
+        "allowedTools": [
+          "rag_ask",
+          "calculator"
+        ],
+        "maxSteps": 2
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "2030年自动监测数据有效率与运维智能化水平的目标百分比之差为3个百分点，文档来源为 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43b8d5378c05064f861b1",
+            "chunkId": "6ab43b8d5378c05064f861b4",
+            "snippet": "## 一、总体要求\n\n                   | 指标                      | 指标                         | 2025年                   | 2030年                   |\n| 1                  "
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "2030年自动监测数据有效率的目标百分比为98% [1]。"
+          },
+          {
+            "index": 2,
+            "tool": "calculator",
+            "status": "SUCCEEDED",
+            "summary": "98 - 95 = 3"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": false,
+        "calculation": false,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [
+        "28"
+      ],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        },
+        {
+          "index": 2,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [
+        "answerKeywords",
+        "calculation"
+      ],
+      "durationMs": 1208
+    }
+  ]
+}

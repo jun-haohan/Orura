@@ -1,0 +1,1686 @@
+{
+  "generatedAt": "2026-09-26T13:10:49.125476+00:00",
+  "notes": "关键词只做空白归一化匹配；answerKeyPoints 与事实是否受引用支持需人工核对。",
+  "summary": {
+    "total": 30,
+    "passed": 17,
+    "failed": 13,
+    "answeredCases": 25,
+    "referenceRetrieved": 24,
+    "referenceCited": 18,
+    "averageTotalMs": 1529,
+    "baselineSizeReached": true,
+    "byCategory": {
+      "cross_document": {
+        "total": 3,
+        "passed": 0,
+        "failed": 3
+      },
+      "document_ids_filter": {
+        "total": 4,
+        "passed": 3,
+        "failed": 1
+      },
+      "insufficient_evidence": {
+        "total": 5,
+        "passed": 5,
+        "failed": 0
+      },
+      "same_document_multi_chunk": {
+        "total": 6,
+        "passed": 0,
+        "failed": 6
+      },
+      "single_chunk": {
+        "total": 12,
+        "passed": 9,
+        "failed": 3
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "SC004",
+      "category": "single_chunk",
+      "question": "节水装备高质量发展重点关注哪些地区和能力建设方向？",
+      "expectedStatus": "ANSWERED",
+      "referenceChunkIds": [
+        "6ab43b805378c05064f86165"
+      ],
+      "answerKeyPoints": [
+        "聚焦重点缺水、水资源超载、水环境敏感、水生态脆弱地区和重点领域用水需求。",
+        "增强从源头到末端的全链条节水装备保障和供给能力。",
+        "推动节水装备制造业高端化、智能化、绿色化发展。"
+      ],
+      "passed": false,
+      "retrievalMs": 523,
+      "ragMs": 1281,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": true,
+        "referenceCited": true,
+        "answerKeywords": false,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [
+        "answerKeywords"
+      ],
+      "missingAnswerKeywords": [
+        "重点缺水"
+      ],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [],
+      "retrievedChunkIds": [
+        "6ab43b805378c05064f86163",
+        "6ab43b805378c05064f86164",
+        "6ab43b805378c05064f86165",
+        "6ab43b805378c05064f8616e",
+        "6ab43b805378c05064f86170"
+      ],
+      "response": {
+        "status": "ANSWERED",
+        "answer": "节水装备高质量发展重点关注缺水、水资源超载、水环境敏感、水生态脆弱地区以及重点领域用水需求 [1]。能力建设方向包括强化节水装备科技创新和产业创新融合发展，提升全链条节水装备保障和供给能力，推动节水装备制造业高端化、智能化、绿色化发展 [1]。此外，还注重优化产业创新发展环境，加快完善标准体系，提升科技创新能力，强化人才队伍建设，推动节水装备产业数智化转型升级 [3]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43b805378c05064f86162",
+            "chunkId": "6ab43b805378c05064f86165",
+            "snippet": "## 一、总体要求\n\n以习近平新时代中国特色社会主义思想为指导，贯彻落 实党的二十大和二十届二中、三中全会精神，全面贯彻习近 平生态文明思想，完整、准确、全面贯彻新发展理念，深入 践行'节水优先、空间均衡、系统治理、两手发力'治水思 路，聚焦重点缺水、水资源超载、水环境敏感、水生态脆弱 地区和重点领域用水需求，落实水资"
+          },
+          {
+            "ref": 3,
+            "documentId": "6ab43b805378c05064f86162",
+            "chunkId": "6ab43b805378c05064f86170",
+            "snippet": "## 六、优化产业创新发展环境\n\n（十三）加大政策支持力度 。依托节约用水工作部际联 席会议等工作机制，加强节水装备发展整体规划布局，扩大\n\n水效标识产品范围。落实大规模设备更新和消费品以旧换新 相关政策，支持重点行业节水装备设备更新及技术改造。探 索设立节水产业基金，发挥绿色金融作用，鼓励金融机构开 发'节水贷'等绿"
+          }
+        ]
+      },
+      "totalMs": 1804
+    },
+    {
+      "id": "SC006",
+      "category": "single_chunk",
+      "question": "安全应急装备产业规划到2030年在技术、产品和应用方面要形成哪些成果？",
+      "expectedStatus": "ANSWERED",
+      "referenceChunkIds": [
+        "6ab43b885378c05064f86195"
+      ],
+      "answerKeyPoints": [
+        "突破一批关键核心技术。",
+        "形成一批国际领先的标志性产品。",
+        "建设一批安全应急装备重点应用场景并推广一批高技术水平、应用成效显著的装备。"
+      ],
+      "passed": false,
+      "retrievalMs": 270,
+      "ragMs": 2103,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": true,
+        "referenceCited": false,
+        "answerKeywords": true,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [
+        "referenceCited"
+      ],
+      "missingAnswerKeywords": [],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [
+        "6ab43b885378c05064f86195"
+      ],
+      "retrievedChunkIds": [
+        "6ab43b885378c05064f86194",
+        "6ab43b885378c05064f86195",
+        "6ab43b885378c05064f86196",
+        "6ab43b885378c05064f8619c",
+        "6ab43b885378c05064f861a0"
+      ],
+      "response": {
+        "status": "ANSWERED",
+        "answer": "到2030年，安全应急装备产业在技术、产品和应用方面要形成以下成果：\n\n1. **技术方面**：突破一批关键核心技术，形成一批国际领先的标志性产品，特别是在极端复杂环境和新业态需求领域 [2]。  \n2. **产品方面**：推广一批具有高技术水平和显著应用成效的安全应急装备，包括重大危险源监测预警系统、新能源清洁能源船舶消防和救援装备等 [5]。同时，家庭社区安全应急产品配备水平进一步提升，如安全应急包、独立式火灾探测报警器、燃气用户端安全装置等 [5]。  \n3. **应用方面**：建设一批安全应急装备重点应用场景，深化“防减救”一体化服务，拓展安全风险评估、应急救援综合保障、安全应急教育培训等专业服务 [4]。此外，推动先进制造业与现代服务业融合发展，发展服务型制造，推广装备租赁、共享、远程运维等新模式 [4]。",
+        "citations": [
+          {
+            "ref": 2,
+            "documentId": "6ab43b875378c05064f86193",
+            "chunkId": "6ab43b885378c05064f86196",
+            "snippet": "## 二、重点任务\n\n（一）加强产业创新\n\n1. 持续开展关键核心技术攻关。以满足安全防范和应急处 置实战需求为导向，加强国家科技重大项目等对安全应急装备 产业的支持力度，支持龙头企业联合高校、科研院所、用户单 位开展关键共性技术和前沿技术攻关，加快突破关键零部件、 元器件、基础材料、基础工艺、基础软件和工业软件瓶颈，"
+          },
+          {
+            "ref": 5,
+            "documentId": "6ab43b875378c05064f86193",
+            "chunkId": "6ab43b885378c05064f8619c",
+            "snippet": "## 专栏3 重点推广领域和产品\n\n 重大危险源监测预警系统、新能源清洁能源船舶消防和救援装备等。\n\n12. 家庭社区安全应急。 面向家居、野外、车辆、景区、活动场馆等多种环境下 安全防护和个人应急逃生自救互救、院前抢救等场景，推广安全应急包、独立式火 灾探测报警器、燃气用户端安全装置、简易喷淋系统、简易式灭火器、消防"
+          },
+          {
+            "ref": 4,
+            "documentId": "6ab43b875378c05064f86193",
+            "chunkId": "6ab43b885378c05064f861a0",
+            "snippet": "## 专栏5 产业集聚与布局\n\n品牌建设。鼓励安全应急装备制造企业开展质 量管理能力评价，推广先进质量标准，引导企业建立完善先进 质量管理体系和产品质量认证体系，按照梯次培育路径推动企 业质量管理能力跃升。加强企业知识产权保护。鼓励企业加强 品牌建设，推动行业品牌形象整体提升，全面提高装备质量可\n\n靠性与市场竞争力，助"
+          }
+        ]
+      },
+      "totalMs": 2373
+    },
+    {
+      "id": "SC009",
+      "category": "single_chunk",
+      "question": "生态环境监测规划对2030年和2035年的体系建设分别作何安排？",
+      "expectedStatus": "ANSWERED",
+      "referenceChunkIds": [
+        "6ab43b8d5378c05064f861b3"
+      ],
+      "answerKeyPoints": [
+        "到2030年，现代化生态环境监测体系建设取得重要进展，基本建成天空地海一体化监测网络。",
+        "主流监测装备基本实现自主可控。",
+        "到2035年，现代化生态环境监测体系基本建成，综合实力达到国际先进水平。"
+      ],
+      "passed": true,
+      "retrievalMs": 265,
+      "ragMs": 1521,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": true,
+        "referenceCited": true,
+        "answerKeywords": true,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [],
+      "missingAnswerKeywords": [],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [],
+      "retrievedChunkIds": [
+        "6ab43b8d5378c05064f861b2",
+        "6ab43b8d5378c05064f861b3",
+        "6ab43b8d5378c05064f861b4",
+        "6ab43b8d5378c05064f861c0",
+        "6ab43b8d5378c05064f861c5"
+      ],
+      "response": {
+        "status": "ANSWERED",
+        "answer": "到2030年，生态环境监测体系建设将取得重要进展，基本建成天空地海一体化生态环境监测网络，国家监测网络实现体系化运行和数智化升级，央地监测网络协同布局、互联互通。新污染物、重金属、生态问题等风险预警监测能力基本形成，自行监测穿透式监管能力明显增强，数据质量持续提高。监测领域关键技术攻关取得突破，主流监测装备基本实现自主可控。自动监测数据有效率将达到98% [1]。\n\n展望2035年，与美丽中国建设进程相适应的现代化生态环境监测体系基本建成，生态环境监测综合实力达到国际先进水平 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43b8d5378c05064f861b1",
+            "chunkId": "6ab43b8d5378c05064f861b3",
+            "snippet": "## 一、总体要求\n\n坚持以习近平新时代中国特色社会主义思想为指导，深入贯彻 党的二十大和二十届历次全会精神，认真落实四中全会部署，全面 贯彻习近平生态文明思想，锚定美丽中国建设目标，以污染治理、 生态保护和应对气候变化需求为牵引，以健全生态环境监测制度为 保障，以加快建立现代化生态环境监测体系为主线，统筹推进一体 化"
+          }
+        ]
+      },
+      "totalMs": 1786
+    },
+    {
+      "id": "SC012",
+      "category": "single_chunk",
+      "question": "数创企业在用数和算力方面可获得哪些支持？",
+      "expectedStatus": "ANSWERED",
+      "referenceChunkIds": [
+        "6ab43b905378c05064f861d5"
+      ],
+      "answerKeyPoints": [
+        "鼓励有条件地区探索发放“数据券”“算法券”，降低治数用数成本。",
+        "支持数创企业公平参与公共数据资源开发利用。",
+        "加快构建全国一体化算力网，引导算力资源与数创企业需求精准对接，并提供低成本、广覆盖、可靠安全的算力服务。"
+      ],
+      "passed": true,
+      "retrievalMs": 273,
+      "ragMs": 1958,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": true,
+        "referenceCited": true,
+        "answerKeywords": true,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [],
+      "missingAnswerKeywords": [],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [],
+      "retrievedChunkIds": [
+        "6ab43b905378c05064f861d5",
+        "6ab43b905378c05064f861d6",
+        "6ab43b905378c05064f861d7",
+        "6ab43b905378c05064f861d8",
+        "6ab43be05378c05064f86365"
+      ],
+      "response": {
+        "status": "ANSWERED",
+        "answer": "数创企业在用数和算力方面可获得的支持包括：\n\n1. 鼓励地方加快建立公共数据授权运营机制和应用创新生态，促进公共数据可持续供给及开发利用，支持数创企业公平参与公共数据资源开发利用 [2]。\n2. 实施“东数西算”工程，加快构建全国一体化算力网，支持地方协同参与、共同建设，推动全国算力资源有序池化、并网运行，打造集算力统筹监测、统一调度、弹性供给、安全保障于一体的新型算力网基础设施，鼓励国家枢纽节点面向数创企业提供低成本、广覆盖、可靠安全的算力服务 [2]。\n3. 鼓励有条件地区探索发放“数据券”“算法券”，降低治数用数成本 [2]。",
+        "citations": [
+          {
+            "ref": 2,
+            "documentId": "6ab43b905378c05064f861d4",
+            "chunkId": "6ab43b905378c05064f861d5",
+            "snippet": "## 关于加强数字经济创新型企业培育的若干措施\n\n数字经济创新型企业（以下简称'数创企业' ）是以数据为关 键生产要素，以数字技术创新、应用场景创新、数据价值创新为核 心驱动力，具备高敏捷性和高成长性的企业，是发展新质生产力的 重要实践主体。为加强前瞻性布局，优化鼓励探索、开放包容的创 新生态，强化对数创企业的发现和培"
+          }
+        ]
+      },
+      "totalMs": 2231
+    },
+    {
+      "id": "SC014",
+      "category": "single_chunk",
+      "question": "促进绿色消费工作的四项原则是什么？",
+      "expectedStatus": "ANSWERED",
+      "referenceChunkIds": [
+        "6ab43b935378c05064f861dc"
+      ],
+      "answerKeyPoints": [
+        "坚持系统推进。",
+        "坚持重点突破。",
+        "坚持社会共治。",
+        "坚持激励约束并举。"
+      ],
+      "passed": true,
+      "retrievalMs": 260,
+      "ragMs": 1056,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": true,
+        "referenceCited": true,
+        "answerKeywords": true,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [],
+      "missingAnswerKeywords": [],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [],
+      "retrievedChunkIds": [
+        "6ab43b935378c05064f861dc",
+        "6ab43b935378c05064f861dd",
+        "6ab43b935378c05064f861df",
+        "6ab43b935378c05064f861e3",
+        "6ab43b935378c05064f861e6"
+      ],
+      "response": {
+        "status": "ANSWERED",
+        "answer": "促进绿色消费工作的四项原则是：  \n1. 坚持系统推进 [2]  \n2. 坚持重点突破 [2]  \n3. 坚持社会共治 [2]  \n4. 坚持激励约束并举 [2]",
+        "citations": [
+          {
+            "ref": 2,
+            "documentId": "6ab43b925378c05064f861d9",
+            "chunkId": "6ab43b935378c05064f861dc",
+            "snippet": "## （一）指导思想。\n\n以习近平新时代中国特色社会主义思想为指导，全面贯彻党的 十九大和十九届历次全会精神，深入贯彻习近平生态文明思想，落 实立足新发展阶段、贯彻新发展理念、构建新发展格局的要求，面\n\n向碳达峰、碳中和目标，大力发展绿色消费，增强全民节约意识，\n\n反对奢侈浪费和过度消费，扩大绿色低碳产品供给和消费，完"
+          }
+        ]
+      },
+      "totalMs": 1316
+    },
+    {
+      "id": "SC019",
+      "category": "single_chunk",
+      "question": "物流网到2030年要实现哪四方面的协同互通？",
+      "expectedStatus": "ANSWERED",
+      "referenceChunkIds": [
+        "6ab43b9b5378c05064f86207"
+      ],
+      "answerKeyPoints": [
+        "枢纽与产业紧密协同。",
+        "通道与网络内外联通。",
+        "设施与装备绿色智能。",
+        "规则与信息全域互通。"
+      ],
+      "passed": true,
+      "retrievalMs": 261,
+      "ragMs": 773,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": true,
+        "referenceCited": true,
+        "answerKeywords": true,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [],
+      "missingAnswerKeywords": [],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [],
+      "retrievedChunkIds": [
+        "6ab43b9b5378c05064f86207",
+        "6ab43b9b5378c05064f8620d",
+        "6ab43b9b5378c05064f8620e",
+        "6ab43b9b5378c05064f8620f",
+        "6ab43c005378c05064f86418"
+      ],
+      "response": {
+        "status": "ANSWERED",
+        "answer": "物流网到2030年要实现的四方面协同互通是：枢纽与产业紧密协同、通道与网络内外联通、设施与装备绿色智能、规则与信息全域互通 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43b9a5378c05064f86205",
+            "chunkId": "6ab43b9b5378c05064f86207",
+            "snippet": "## 一、总体要求\n\n坚持以习近平新时代中国特色社会主义思想为指导，深入贯彻 党的二十大和二十届历次全会精神，完整准确全面贯彻新发展理 念，统筹发展和安全，统筹'大动脉'和'微循环' 、 '硬建设'和 '软联通' 、 '内流通'和'外联通' ，加快补短板、畅联通、提能 级，坚持做优增量与提升存量并重，强化技术赋能和系统"
+          }
+        ]
+      },
+      "totalMs": 1034
+    },
+    {
+      "id": "SC021",
+      "category": "single_chunk",
+      "question": "海水淡化产业到2030年要在哪些供水保障、技术和产业能力上取得进展？",
+      "expectedStatus": "ANSWERED",
+      "referenceChunkIds": [
+        "6ab43ba05378c05064f86224"
+      ],
+      "answerKeyPoints": [
+        "城市应急供水、海岛民生用水保障能力进一步增强。",
+        "突破一批关键材料装备技术瓶颈，全产业链核心技术体系基本形成。",
+        "产业智能化、绿色化水平和国际竞争力进一步提升。"
+      ],
+      "passed": true,
+      "retrievalMs": 260,
+      "ragMs": 2286,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": true,
+        "referenceCited": true,
+        "answerKeywords": true,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [],
+      "missingAnswerKeywords": [],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [],
+      "retrievedChunkIds": [
+        "6ab43ba05378c05064f86224",
+        "6ab43ba05378c05064f86225",
+        "6ab43ba05378c05064f86226",
+        "6ab43ba05378c05064f86228",
+        "6ab43ba05378c05064f86229"
+      ],
+      "response": {
+        "status": "ANSWERED",
+        "answer": "到2030年，海水淡化产业要在以下方面取得进展：\n\n1. **供水保障**：城市应急供水和海岛民生用水保障能力增强，沿海工业园区海水淡化水利用比例提高，沿海城市新增海水淡化工程规模130万吨/日，海岛新增20万吨/日，全国海水淡化工程总规模达450万吨/日以上 [1]。\n\n2. **技术突破**：突破关键材料装备技术瓶颈，如高性能反渗透膜、纳滤膜、大型海水淡化高压泵、万吨级能量回收装置等，推动其性能指标达到国际先进水平；开展浓盐水综合利用、新型海水淡化技术（如盐差能、光热耦合、双膜法短流程）等研究 [1][2]。\n\n3. **产业能力**：形成全产业链核心技术体系，提升智能化、绿色化水平，培育一批具有国际竞争力的龙头企业，推动海水淡化与盐化工、矿山生态修复、盐碱地土壤改良等融合发展 [1][5]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43ba05378c05064f86222",
+            "chunkId": "6ab43ba05378c05064f86224",
+            "snippet": "## 一、总体要求\n\n以习近平新时代中国特色社会主义思想为指导，深入贯彻党的 二十大和二十届历次全会精神，完整准确全面贯彻新发展理念，加 快构建新发展格局，聚焦水资源节约保护与海洋强国建设战略目 标，坚持市场化推进原则，以拓展应用场景为主线，以强化科技创 新为动力，以健全政策标准为保障，促进海水淡化科技与产业创新 深度"
+          },
+          {
+            "ref": 2,
+            "documentId": "6ab43ba05378c05064f86222",
+            "chunkId": "6ab43ba05378c05064f86226",
+            "snippet": "## 专栏 1 海水淡化提质扩能重点工程\n\n1. 沿海城市海水淡化能力提升工程。 支持既有海水淡化工程提标改造，因地制 宜规划建设一批 10 万吨 / 日级的大型海水淡化工程，加强海水淡化水输配管网等配 套设施建设，扩大城市海水淡化水协同配置利用规模。\n2. 海岛地区海水淡化保障能力提升工程。 推进海岛海水淡化工程建设"
+          },
+          {
+            "ref": 5,
+            "documentId": "6ab43ba05378c05064f86222",
+            "chunkId": "6ab43ba05378c05064f86228",
+            "snippet": "## 专栏 2 海水淡化产业体系构建工程\n\n1. 海水淡化产业关键技术创新工程。 推动海水淡化领域全国重点实验室建设， 加快高性能反渗透膜、大型海水淡化高压泵、万吨级能量回收装置、海水水处理药 剂、绿色预处理、海水战略资源提取等核心技术攻关，产出一批战略性、关键性重 大科技成果。\n2. 关键技术装备产业化示范工程。 支"
+          }
+        ]
+      },
+      "totalMs": 2547
+    },
+    {
+      "id": "SC028",
+      "category": "single_chunk",
+      "question": "新型储能专项行动到2027年提出的装机规模和直接投资带动目标是多少？",
+      "expectedStatus": "ANSWERED",
+      "referenceChunkIds": [
+        "6ab43bbf5378c05064f862d8"
+      ],
+      "answerKeyPoints": [
+        "全国新型储能装机规模达到1.8亿千瓦以上。",
+        "带动项目直接投资约2500亿元。"
+      ],
+      "passed": true,
+      "retrievalMs": 261,
+      "ragMs": 711,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": true,
+        "referenceCited": true,
+        "answerKeywords": true,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [],
+      "missingAnswerKeywords": [],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [],
+      "retrievedChunkIds": [
+        "6ab43bbf5378c05064f862d6",
+        "6ab43bbf5378c05064f862d7",
+        "6ab43bbf5378c05064f862d8",
+        "6ab43bbf5378c05064f862d9",
+        "6ab43bbf5378c05064f862de"
+      ],
+      "response": {
+        "status": "ANSWERED",
+        "answer": "到2027年，新型储能装机规模将达到1.8亿千瓦以上，带动项目直接投资约2500亿元 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43bbe5378c05064f862d5",
+            "chunkId": "6ab43bbf5378c05064f862d8",
+            "snippet": "## 一、总体目标\n\n2027 年，新型储能基本实现规模化、市场化发展，技术创新水 平和装备制造能力稳居全球前列，市场机制、商业模式、标准体系 基本成熟健全，适应新型电力系统稳定运行的多元储能体系初步建 成，形成统筹全局、多元互补、高效运营的整体格局，为能源绿色 转型发展提供有力支撑。全国新型储能装机规模达到 1.8 "
+          }
+        ]
+      },
+      "totalMs": 971
+    },
+    {
+      "id": "SC037",
+      "category": "single_chunk",
+      "question": "《跨省跨区电力应急调度管理办法》如何定义应急调度？",
+      "expectedStatus": "ANSWERED",
+      "referenceChunkIds": [
+        "6ab43bdd5378c05064f86356"
+      ],
+      "answerKeyPoints": [
+        "应急调度是在非突发故障异常等紧急情况下，电力运行出现保安全、保供应需求时采取的措施。",
+        "它在日前、日内阶段统筹全网资源进行优化互济，属于兜底调度措施。"
+      ],
+      "passed": true,
+      "retrievalMs": 258,
+      "ragMs": 950,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": true,
+        "referenceCited": true,
+        "answerKeywords": true,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [],
+      "missingAnswerKeywords": [],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [],
+      "retrievedChunkIds": [
+        "6ab43bdd5378c05064f86355",
+        "6ab43bdd5378c05064f86356",
+        "6ab43bdd5378c05064f86357",
+        "6ab43bdd5378c05064f86358",
+        "6ab43bdd5378c05064f86359"
+      ],
+      "response": {
+        "status": "ANSWERED",
+        "answer": "《跨省跨区电力应急调度管理办法》中定义的应急调度是指在非突发故障异常等紧急情况下，电力运行中出现安全、供应需求时，在日前、日内阶段统筹全网资源进行优化互济的兜底调度措施 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43bdc5378c05064f86354",
+            "chunkId": "6ab43bdd5378c05064f86356",
+            "snippet": "## 第一章 总则\n\n- 第一条 为健全电力应急机制， 规范跨省跨区电力应急调度管 理，根据《中华人民共和国能源法》 《中华人民共和国电力法》 《电 网调度管理条例》等法律法规，制定本办法。\n- 第二条 本办法所称跨省跨区电力应急调度 （以下简称应急调 度） ，是指在非突发故障异常等紧急情况下，电力运行中出现保安 全、"
+          }
+        ]
+      },
+      "totalMs": 1209
+    },
+    {
+      "id": "SC041",
+      "category": "single_chunk",
+      "question": "零碳工厂建设应遵循哪四项原则？",
+      "expectedStatus": "ANSWERED",
+      "referenceChunkIds": [
+        "6ab43be85378c05064f863b3"
+      ],
+      "answerKeyPoints": [
+        "因业施策，系统推进。",
+        "创新驱动，技术赋能。",
+        "应减尽减，持续提升。",
+        "统一规范，公开透明。"
+      ],
+      "passed": true,
+      "retrievalMs": 259,
+      "ragMs": 1065,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": true,
+        "referenceCited": true,
+        "answerKeywords": true,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [],
+      "missingAnswerKeywords": [],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [],
+      "retrievedChunkIds": [
+        "6ab43be85378c05064f863b2",
+        "6ab43be85378c05064f863b3",
+        "6ab43be85378c05064f863b5",
+        "6ab43be85378c05064f863b6",
+        "6ab43be85378c05064f863b7"
+      ],
+      "response": {
+        "status": "ANSWERED",
+        "answer": "零碳工厂建设应遵循的四项原则是：  \n1. 因业施策，系统推进 [1]  \n2. 创新驱动，技术赋能 [1]  \n3. 应减尽减，持续提升 [1]  \n4. 统一规范，公开透明 [1]",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43be75378c05064f863b1",
+            "chunkId": "6ab43be85378c05064f863b3",
+            "snippet": "## 一、总体要求\n\n坚持以习近平新时代中国特色社会主义思想为指导，深 入贯彻习近平生态文明思想，全面贯彻党的二十大和二十届 历次全会精神，全面落实全国新型工业化推进大会部署，以 全产业链提质增效升级和绿色低碳转型为主线，坚持因业施 策、创新引领、稳妥有序，强化政策牵引、标准供给和市场 驱动，加快绿色能源与现代制造深度"
+          }
+        ]
+      },
+      "totalMs": 1324
+    },
+    {
+      "id": "SC049",
+      "category": "single_chunk",
+      "question": "物联网如何连接数字世界和物理世界，其产业由哪些部分组成？",
+      "expectedStatus": "ANSWERED",
+      "referenceChunkIds": [
+        "6ab43c065378c05064f86436"
+      ],
+      "answerKeyPoints": [
+        "物联网基于感知技术，通过通信网络实现人、机、物的泛在智能连接。",
+        "物联网产业主要由感知、网络、平台、应用和安全保障组成。"
+      ],
+      "passed": true,
+      "retrievalMs": 267,
+      "ragMs": 1909,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": true,
+        "referenceCited": true,
+        "answerKeywords": true,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [],
+      "missingAnswerKeywords": [],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [],
+      "retrievedChunkIds": [
+        "6ab43c065378c05064f86436",
+        "6ab43c065378c05064f86437",
+        "6ab43c065378c05064f8643c",
+        "6ab45bf75378c05064f868e8",
+        "6ab51de6caf873e6b25f2e67"
+      ],
+      "response": {
+        "status": "ANSWERED",
+        "answer": "物联网通过感知技术连接数字世界和物理世界，实现人、机、物的泛在智能连接 [1]。其产业主要由感知、网络、平台、应用和安全保障五个部分组成 [1]。\n\n物联网产业的组成部分包括：\n- 感知层：如 RFID 技术，用于识别和感知物理世界 [2]。\n- 网络层：实现数据传输和通信。\n- 平台层：处理和分析数据，提供智能化服务。\n- 应用层：面向具体场景的应用，如物流管理、安全访问控制等 [2]。\n- 安全保障：确保数据安全和系统稳定 [1]。\n\n此外，物联网产业生态还包括标准体系、企业创新、与人工智能融合、数据价值释放以及安全监管等方面 [3]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43c055378c05064f86434",
+            "chunkId": "6ab43c065378c05064f86436",
+            "snippet": "## （ 2026-2028 年）\n\n物联网基于感知技术，通过通信网络，实现人、机、物\n\n的泛在智能连接，打通数字世界和物理世界。物联网产业主 要由感知、网络、平台、应用和安全保障组成。为推动物联 网产业创新发展，进一步加速物联网技术全面融入生产、消 费和社会治理各领域，促进数字经济和实体经济深度融合， 助力发展新质生"
+          },
+          {
+            "ref": 2,
+            "documentId": "6ab45bd85378c05064f868e2",
+            "chunkId": "6ab45bf75378c05064f868e8",
+            "snippet": "## 1 引　言\n\n近年来 , 随着物联网、工业互联网以及工业 4.0 等一系列智能化概念的提出 , 新型的计算模式与感知技术被 充分应用于生产生活中 . 而在这些技术中 , 射频识别技术 (radio frequency identification, RFID) 作为条形码以及二 维码的替代产物 , 已经成为物联网"
+          },
+          {
+            "ref": 3,
+            "documentId": "6ab43c055378c05064f86434",
+            "chunkId": "6ab43c065378c05064f8643c",
+            "snippet": "## 六、营造物联网产业发展生态\n\n（十二）健全物联网产业体系。 围绕物联网产业链关键 环节，构建核心产业链图谱和关键技术清单，分类分级推动 短板技术攻关、长板技术升级和先进技术推广。优化完善物 联网标准体系，加快关键技术标准、行业融合应用标准研制 与实施。强化产业运行监测，建立健全产业规模和连接数测 算体系，评估核心"
+          }
+        ]
+      },
+      "totalMs": 2177
+    },
+    {
+      "id": "SC060",
+      "category": "single_chunk",
+      "question": "《能源规划管理办法》所称能源规划包括哪四类？",
+      "expectedStatus": "ANSWERED",
+      "referenceChunkIds": [
+        "6ab43c2f5378c05064f864d3"
+      ],
+      "answerKeyPoints": [
+        "全国综合能源规划。",
+        "全国分领域能源规划。",
+        "区域能源规划。",
+        "省、自治区、直辖市能源规划，即省级能源规划。"
+      ],
+      "passed": false,
+      "retrievalMs": 258,
+      "ragMs": 864,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": true,
+        "referenceCited": true,
+        "answerKeywords": false,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [
+        "answerKeywords"
+      ],
+      "missingAnswerKeywords": [
+        "省级能源规划"
+      ],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [],
+      "retrievedChunkIds": [
+        "6ab43c2f5378c05064f864d3",
+        "6ab43c2f5378c05064f864d4",
+        "6ab43c2f5378c05064f864d5",
+        "6ab43c2f5378c05064f864d6",
+        "6ab43c2f5378c05064f864d8"
+      ],
+      "response": {
+        "status": "ANSWERED",
+        "answer": "《能源规划管理办法》所称能源规划包括全国综合能源规划、全国分领域能源规划、区域能源规划和省、自治区、直辖市能源规划 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43c2f5378c05064f864d1",
+            "chunkId": "6ab43c2f5378c05064f864d3",
+            "snippet": "## 第一章 总则\n\n第一条 为加强能源规划管理，规范规划编制工作，保障规 划有效实施， 发挥能源规划对能源发展的引领、 指导和规范作用， 依据《中华人民共和国能源法》、《中共中央 国务院关于统一 规划体系更好发挥国家发展规划战略导向作用的意见》（中发 〔 2018 〕 44 号）、《国务院关于取消非行政许可审批事项的"
+          }
+        ]
+      },
+      "totalMs": 1122
+    },
+    {
+      "id": "SMC001",
+      "category": "same_document_multi_chunk",
+      "question": "节能装备方案的2028年总体目标如何落实到电机、风机、泵、压缩机和变压器的具体占比指标？",
+      "expectedStatus": "ANSWERED",
+      "referenceChunkIds": [
+        "6ab43b785378c05064f86134",
+        "6ab43b785378c05064f86135"
+      ],
+      "answerKeyPoints": [
+        "总体上，到2028年电机、变压器等节能装备能效水平达到国际领先。",
+        "新增节能电机、风机、泵、压缩机占比均达到35%，在役同类节能设备占比均超过15%。",
+        "新增节能变压器占比超过75%，在役节能变压器占比达到15%。"
+      ],
+      "passed": false,
+      "retrievalMs": 261,
+      "ragMs": 1672,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": true,
+        "referenceCited": false,
+        "answerKeywords": false,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [
+        "referenceCited",
+        "answerKeywords"
+      ],
+      "missingAnswerKeywords": [
+        "能效水平达到国际领先"
+      ],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [
+        "6ab43b785378c05064f86134"
+      ],
+      "retrievedChunkIds": [
+        "6ab43b785378c05064f86134",
+        "6ab43b785378c05064f86135",
+        "6ab43b785378c05064f86136",
+        "6ab43b785378c05064f86137",
+        "6ab43b785378c05064f8613a"
+      ],
+      "response": {
+        "status": "ANSWERED",
+        "answer": "根据提供的资料，2028年节能装备方案的总体目标落实到具体设备的占比指标如下：\n\n- **电机、风机、泵、压缩机**：新增节能设备占比均达到 35%，在役节能设备占比均超过 15% [1]。\n- **变压器**：新增节能变压器占比超过 75%，在役节能变压器占比达到 15% [1]。\n- **工业制冷（热）和加热设备**：新增节能设备占比达到 45%，在役节能设备占比达到 25% [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43b775378c05064f86132",
+            "chunkId": "6ab43b785378c05064f86135",
+            "snippet": "## 二、加快先进节能装备研发推广\n\n（一）电机和风机、泵、压缩机等负载设备。 推动超 1 级能 效、宽域高效电机所需基础材料及核心零部件研发升级，加快高 效节能异步电机、宽域永磁电机、直驱电机、磁悬浮电机以及高 精度工业伺服电机等推广应用。针对超低速、超高速、频繁变负 载、高响应速度、低速大转矩、大惯量负载起动等特定"
+          }
+        ]
+      },
+      "totalMs": 1933
+    },
+    {
+      "id": "SMC005",
+      "category": "same_document_multi_chunk",
+      "question": "生态环境监测规划的体系建设愿景，如何体现在2030年的具体监测指标上？",
+      "expectedStatus": "ANSWERED",
+      "referenceChunkIds": [
+        "6ab43b8d5378c05064f861b3",
+        "6ab43b8d5378c05064f861b4"
+      ],
+      "answerKeyPoints": [
+        "愿景是到2030年基本建成天空地海一体化生态环境监测网络，推动国家网络数智化升级。",
+        "对应指标包括自动监测数据有效率98%、运维智能化水平70%。",
+        "重要生态空间人为活动遥感监测能力达到每月100万平方公里。"
+      ],
+      "passed": false,
+      "retrievalMs": 261,
+      "ragMs": 1982,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": true,
+        "referenceCited": false,
+        "answerKeywords": false,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [
+        "referenceCited",
+        "answerKeywords"
+      ],
+      "missingAnswerKeywords": [
+        "天空地海一体化生态环境监测网络",
+        "运维智能化水平"
+      ],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [
+        "6ab43b8d5378c05064f861b3"
+      ],
+      "retrievedChunkIds": [
+        "6ab43b8d5378c05064f861b3",
+        "6ab43b8d5378c05064f861b4",
+        "6ab43b8d5378c05064f861b7",
+        "6ab43b8d5378c05064f861c0",
+        "6ab43b8d5378c05064f861c5"
+      ],
+      "response": {
+        "status": "ANSWERED",
+        "answer": "生态环境监测规划的体系建设愿景在2030年的具体监测指标上体现为：  \n1. 国家生态环境监测网的自动监测数据有效率提升至98% [2]。  \n2. 重点指标分析测试智能化水平达到70% [2]。  \n3. 重要生态空间人为活动遥感监测能力提升至100万平方公里/月 [2]。  \n4. 国家级自然保护区人为活动遥感监测实现月度全覆盖，图斑识别准确率达85% [3]。  \n5. 地方监测网络运行质效大幅提升，环境质量自动监测数据有效率超过95% [4]。  \n6. 生态环境质量监测站点覆盖全国地级及以上城市、重点流域、海域和生态功能区，提升监测网络的全面性和代表性 [5]。",
+        "citations": [
+          {
+            "ref": 2,
+            "documentId": "6ab43b8d5378c05064f861b1",
+            "chunkId": "6ab43b8d5378c05064f861b4",
+            "snippet": "## 一、总体要求\n\n                   | 指标                      | 指标                         | 2025年                   | 2030年                   |\n| 1                  "
+          },
+          {
+            "ref": 3,
+            "documentId": "6ab43b8d5378c05064f861b1",
+            "chunkId": "6ab43b8d5378c05064f861c0",
+            "snippet": "## （三）支撑生态保护修复监管\n\n加强生物多样性保护优先区域珍稀濒危物种、旗舰物种、关键 物种等监测评估。深化全国及重点区域生态质量评价，客观反映生 态系统格局、质量、功能及动态变化，到2030年，重要生态参数遥 感产品国产化率达到90%以上。优化重点生态功能区县域生态环境质 量监测评价体系。加强年度、双月、月度协同"
+          },
+          {
+            "ref": 4,
+            "documentId": "6ab43b8d5378c05064f861b1",
+            "chunkId": "6ab43b8d5378c05064f861c5",
+            "snippet": "## （一）央地协同深化监测网络质量管理\n\n以自动监测、智能实验室、卫星遥感监测等为重点，制定统一 的质量管理标准规范与评估要求，建设国家监测网络全面质量管理 体系和量值溯源技术体系。各省份建立健全地方监测网络质量管理 体系并持续改进，加强对自动监测设备参数调整、维修更换、数据 审核等关键环节的质控和监督。到2030年"
+          },
+          {
+            "ref": 5,
+            "documentId": "6ab43b8d5378c05064f861b1",
+            "chunkId": "6ab43b8d5378c05064f861b7",
+            "snippet": "## （一）提升国家监测网络全面性代表性\n\n统一规划国家生态环境质量监测站点，覆盖全国地级及以上城 市、重点流域、管辖海域和重点生态功能区，支撑美丽中国建设成 效评价。拓展水生生物及其重要生境监测。加强生态质量综合监测 站和监测样地建设，深入开展生态质量监督监测。优化海洋监测模 式，统筹提升监测效率和时空代表性，强化典"
+          }
+        ]
+      },
+      "totalMs": 2243
+    },
+    {
+      "id": "SMC007",
+      "category": "same_document_multi_chunk",
+      "question": "促进绿色消费为何重要，其2030年目标和工作原则是什么？",
+      "expectedStatus": "ANSWERED",
+      "referenceChunkIds": [
+        "6ab43b935378c05064f861da",
+        "6ab43b935378c05064f861dc"
+      ],
+      "answerKeyPoints": [
+        "促进绿色消费要把绿色理念融入消费全领域、全周期、全链条、全体系，推动消费绿色低碳转型升级。",
+        "到2030年，绿色消费成为公众自觉选择，绿色低碳产品成为市场主流，制度政策体系基本健全。",
+        "工作坚持系统推进、重点突破、社会共治和激励约束并举。"
+      ],
+      "passed": false,
+      "retrievalMs": 275,
+      "ragMs": 1527,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": true,
+        "referenceCited": false,
+        "answerKeywords": false,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [
+        "referenceCited",
+        "answerKeywords"
+      ],
+      "missingAnswerKeywords": [
+        "消费绿色低碳转型升级"
+      ],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [
+        "6ab43b935378c05064f861da"
+      ],
+      "retrievedChunkIds": [
+        "6ab43b935378c05064f861da",
+        "6ab43b935378c05064f861dc",
+        "6ab43b935378c05064f861df",
+        "6ab43b935378c05064f861e3",
+        "6ab43b935378c05064f861e6"
+      ],
+      "response": {
+        "status": "ANSWERED",
+        "answer": "促进绿色消费的重要性在于推动高质量发展和创造高品质生活，助力实现碳达峰、碳中和目标，形成绿色低碳、文明健康的生活方式和消费模式 [1]。其2030年目标是绿色消费方式成为公众自觉选择，绿色低碳产品成为市场主流，重点领域消费绿色低碳发展模式基本形成，绿色消费制度政策体系和体制机制基本健全 [1]。工作原则包括系统推进、重点突破、社会共治和激励约束并举 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43b925378c05064f861d9",
+            "chunkId": "6ab43b935378c05064f861dc",
+            "snippet": "## （一）指导思想。\n\n以习近平新时代中国特色社会主义思想为指导，全面贯彻党的 十九大和十九届历次全会精神，深入贯彻习近平生态文明思想，落 实立足新发展阶段、贯彻新发展理念、构建新发展格局的要求，面\n\n向碳达峰、碳中和目标，大力发展绿色消费，增强全民节约意识，\n\n反对奢侈浪费和过度消费，扩大绿色低碳产品供给和消费，完"
+          }
+        ]
+      },
+      "totalMs": 1802
+    },
+    {
+      "id": "SMC013",
+      "category": "same_document_multi_chunk",
+      "question": "全域数字化转型城市的2027年建设目标，如何通过智慧治理和应急安全行动落地？",
+      "expectedStatus": "ANSWERED",
+      "referenceChunkIds": [
+        "6ab43ba85378c05064f86244",
+        "6ab43ba85378c05064f86245"
+      ],
+      "answerKeyPoints": [
+        "到2027年底建成50个以上全域数字化转型城市，重点事件和高频民生事项实现“一件事”覆盖。",
+        "深化“一网统管”，建设综合运行和治理中心，提升监测预警、事件流转、指挥调度与决策支持能力。",
+        "建设城市安全风险监测预警体系和覆盖全域、全灾种的数字化预案库。"
+      ],
+      "passed": false,
+      "retrievalMs": 274,
+      "ragMs": 2492,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": true,
+        "referenceCited": false,
+        "answerKeywords": false,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [
+        "referenceCited",
+        "answerKeywords"
+      ],
+      "missingAnswerKeywords": [
+        "50 个以上全域数字化转型城市",
+        "数字化预案库"
+      ],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [
+        "6ab43ba85378c05064f86244"
+      ],
+      "retrievedChunkIds": [
+        "6ab43ba85378c05064f86243",
+        "6ab43ba85378c05064f86244",
+        "6ab43ba85378c05064f86245",
+        "6ab43ba85378c05064f8624a",
+        "6ab43ba85378c05064f8624b"
+      ],
+      "response": {
+        "status": "ANSWERED",
+        "answer": "2027年全域数字化转型城市的建设目标通过智慧治理和应急安全行动落地，主要体现在以下几个方面：\n\n1. 构建城市智慧高效治理体系，深化“一网统管”建设，建立数据赋能、分级协作、闭环落实的治理机制，提升监测预警、事件流转、指挥调度、决策支持等核心能力 [2]。\n\n2. 数智赋能城市应急安全保障，建设城市安全风险监测预警体系，建立公共安全、生产安全、自然灾害等城市风险的信息共享和应急联动机制，提高风险早期识别预警能力 [2]。\n\n3. 推动城市运行管理服务平台建设，完善城市运行管理工作机制，探索实施全流程数字化报建，构建房屋安全隐患动态监测和智能预警技术体系 [2]。\n\n4. 推进国土空间治理数字化转型，推动生态环境监测网络数智化转型，支撑污染防治等绿色低碳数字化应用 [2]。\n\n5. 提升民意速办服务效能，推动完善党建引领基层治理体系，健全多元治理力量全过程参与机制，加快整合政务服务、基层网格、12345热线、舆情信访等渠道数据，推进民意速办、接诉即办、未诉先办 [2]。",
+        "citations": [
+          {
+            "ref": 2,
+            "documentId": "6ab43ba85378c05064f86242",
+            "chunkId": "6ab43ba85378c05064f86245",
+            "snippet": "## 二、实施城市智慧高效治理提升行动，提高平急联动协同能力\n\n（一）构建城市智慧高效治理体系。 深化'一网统管'建设， 构建城市运行体征指标体系，建立数据赋能、分级协作、闭环落实 的智慧高效治理机制。鼓励有条件的城市建设数字化城市综合运行 和治理中心，探索建立基于智能中枢的多级贯通智能化平台，推进 城市运行、综合治理"
+          }
+        ]
+      },
+      "totalMs": 2766
+    },
+    {
+      "id": "SMC020",
+      "category": "same_document_multi_chunk",
+      "question": "平台经济协同发展的2028年数量目标，如何通过科技创新协同来推进？",
+      "expectedStatus": "ANSWERED",
+      "referenceChunkIds": [
+        "6ab43be05378c05064f8635e",
+        "6ab43be05378c05064f86360"
+      ],
+      "answerKeyPoints": [
+        "到2028年遴选不少于100个平台资源开放场景试点项目，并打造60个可落地的智能服务应用场景。",
+        "平台企业加强通用大模型、行业大模型和智能体等创新布局。",
+        "通过平台企业“发榜”、中小企业“揭榜”，联合高校科研院所开展关键技术攻关并增加原创性、颠覆性技术投入。"
+      ],
+      "passed": false,
+      "retrievalMs": 256,
+      "ragMs": 2302,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": true,
+        "referenceCited": true,
+        "answerKeywords": false,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [
+        "answerKeywords"
+      ],
+      "missingAnswerKeywords": [
+        "不少于 100",
+        "60 个可落地的智能服务应用场景",
+        "发榜"
+      ],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [],
+      "retrievedChunkIds": [
+        "6ab43be05378c05064f8635d",
+        "6ab43be05378c05064f8635e",
+        "6ab43be05378c05064f86360",
+        "6ab43be05378c05064f86365",
+        "6ab43be05378c05064f86371"
+      ],
+      "response": {
+        "status": "ANSWERED",
+        "answer": "通过科技创新协同推进平台经济协同发展，主要措施包括：\n\n1. 引导平台企业加强人工智能领域创新布局，如通用大模型、行业大模型和智能体等，并推动新技术、新产品验证应用推广 [3]。\n\n2. 支持平台企业与中小企业开展创新协同合作，联合高校、科研院所申报国家科技重大专项和重点研发计划，开展关键技术联合攻关 [3]。\n\n3. 推动平台企业建立创新投入增长机制，增强对基础性、原创性、颠覆性技术的投入保障能力 [3]。\n\n4. 打造创新联合体，推动平台企业联合中小企业和高校、科研院所组建创新联合体，加强重点领域关键共性技术研发 [4]。\n\n5. 建立揭榜挂帅机制，定期组织平台企业发布关键技术产品创新需求，支持中小企业揭榜攻关 [4]。\n\n6. 建设智能服务平台，开发适合中小企业的智能化应用模块和模型资源，提供开发工具、算力支持与测试环境 [4]。\n\n这些措施将有助于提升平台经济大中小企业的协同发展水平，推动新技术、新应用、新模式、新业态加速涌现 [1]。",
+        "citations": [
+          {
+            "ref": 3,
+            "documentId": "6ab43bdf5378c05064f8635c",
+            "chunkId": "6ab43be05378c05064f86360",
+            "snippet": "## （一）增强科技创新发展能力\n\n引导平台企业加强通用大模型、行业大模型和智能体等 人工智能领域创新布局，加快推进高端芯片、下一代操作系 统、下一代智能终端等重点前沿领域技术和产品研发突破， 推动新技术新产品验证应用推广。支持平台企业、中小企业 开展创新协同合作，与高校、科研院所等联合申报、共同承 担国家科技重大专项"
+          },
+          {
+            "ref": 4,
+            "documentId": "6ab43bdf5378c05064f8635c",
+            "chunkId": "6ab43be05378c05064f86365",
+            "snippet": "## 专栏 1 创新协同领航行动\n\n一是打造创新联合体。 推动平台企业联合中小企业和高校、科 研院所等组建创新联合体，支持承接科技重大项目，加强重点领域 关键共性技术研发，强化标准共建和知识产权合作，推动科技成果 赋智中小企业。 二是建立揭榜挂帅机制。 定期组织动员平台企业发 布关键技术产品创新需求、场景创新需求等，建"
+          },
+          {
+            "ref": 1,
+            "documentId": "6ab43bdf5378c05064f8635c",
+            "chunkId": "6ab43be05378c05064f8635e",
+            "snippet": "## 一、总体要求\n\n以习近平新时代中国特色社会主义思想为指导，全面贯 彻党的二十大和二十届历次全会精神，深入落实党中央、国 务院关于促进平台经济创新健康发展的决策部署，完整准确 全面贯彻新发展理念，深刻把握平台经济发展规律，坚持问 题导向、目标导向、结果导向，系统推进平台经济大中小企 业创新协同、生态协同、开放协同，"
+          }
+        ]
+      },
+      "totalMs": 2558
+    },
+    {
+      "id": "SMC024",
+      "category": "same_document_multi_chunk",
+      "question": "纺织服装创意设计领航集聚区的阶段目标与四项建设原则如何对应？",
+      "expectedStatus": "ANSWERED",
+      "referenceChunkIds": [
+        "6ab43c0b5378c05064f86447",
+        "6ab43c0b5378c05064f86448"
+      ],
+      "answerKeyPoints": [
+        "到2027年形成一批特色鲜明的领航集聚区，到2030年初步建成具有全球竞争力的设计、产品和品牌体系。",
+        "建设坚持市场主导和政府引导，使企业成为建设运营主体并由政府提供规划、政策和公共服务。",
+        "同时聚焦设计、服务产业，以设计资源和开放式创新服务体系推动全产业链协同。"
+      ],
+      "passed": false,
+      "retrievalMs": 258,
+      "ragMs": 2493,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": true,
+        "referenceCited": false,
+        "answerKeywords": false,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [
+        "referenceCited",
+        "answerKeywords"
+      ],
+      "missingAnswerKeywords": [
+        "到 2027 年",
+        "到 2030 年"
+      ],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [
+        "6ab43c0b5378c05064f86448"
+      ],
+      "retrievedChunkIds": [
+        "6ab43c0b5378c05064f86447",
+        "6ab43c0b5378c05064f86448",
+        "6ab43c0b5378c05064f86449",
+        "6ab43c0b5378c05064f8644a",
+        "6ab43c0b5378c05064f8644c"
+      ],
+      "response": {
+        "status": "ANSWERED",
+        "answer": "纺织服装创意设计领航集聚区的阶段目标与四项建设原则的对应关系如下：\n\n1. **市场主导**：通过市场规律引导设计方向、生产规模及销售策略，促进“设计-生产-销售”各环节顺畅运转，对应阶段目标中“形成一批特色鲜明的‘纺织服装创意设计领航集聚区’” [2]。\n\n2. **政府引导**：政府在规划引导、政策支持、环境营造等方面发挥作用，为集聚区发展提供制度保障和公共服务，对应阶段目标中“探索形成以创意设计赋能我国纺织服装产业高质量发展的关键路径” [2]。\n\n3. **聚焦设计**：将创意设计作为集聚区发展的核心与引擎，集聚设计资源，提升设计水平，对应阶段目标中“打造集品牌集聚、要素融合、创新赋能于一体的现代化产业生态圈” [2]。\n\n4. **服务产业**：通过创新基础设施和专业化服务体系，推动各环节高效协同，提升全要素生产率，对应阶段目标中“初步建成具有全球竞争力的创意设计体系、引领国际消费市场趋势的产品体系和掌握国际市场话语权的品牌体系” [2]。",
+        "citations": [
+          {
+            "ref": 2,
+            "documentId": "6ab43c0a5378c05064f86445",
+            "chunkId": "6ab43c0b5378c05064f86447",
+            "snippet": "## 一、总体要求\n\n以习近平新时代中国特色社会主义思想为指导，全面贯 彻党的二十大和二十届二中、三中全会精神，贯彻落实中央 经济工作会议部署，以消费升级为导向，聚焦创意设计、技 术创新、质量管理、品牌建设等关键路径，汇集线上线下创 意设计资源，进一步引导纺织服装创意设计集聚区提升服务 能力，促进集聚区建设与生产性服务"
+          }
+        ]
+      },
+      "totalMs": 2751
+    },
+    {
+      "id": "CD004",
+      "category": "cross_document",
+      "question": "纺织服装品牌培育和纺织标准升级两项行动，到2028年分别提出了哪些数量目标？",
+      "expectedStatus": "ANSWERED",
+      "referenceChunkIds": [
+        "6ab43b985378c05064f861f8",
+        "6ab43bd15378c05064f86329"
+      ],
+      "answerKeyPoints": [
+        "品牌行动要求到2028年培育不少于25个纺织服装卓越品牌，提升竞争优势和市场影响力。",
+        "标准行动要求制修订标准300项以上，其中国际标准10项以上，国际标准转化率保持85%以上。"
+      ],
+      "passed": false,
+      "retrievalMs": 264,
+      "ragMs": 1011,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": true,
+        "referenceCited": true,
+        "answerKeywords": false,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [
+        "answerKeywords"
+      ],
+      "missingAnswerKeywords": [
+        "85% 以上"
+      ],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [],
+      "retrievedChunkIds": [
+        "6ab43b985378c05064f861f7",
+        "6ab43b985378c05064f861f8",
+        "6ab43ba35378c05064f8622c",
+        "6ab43bd15378c05064f86328",
+        "6ab43bd15378c05064f86329"
+      ],
+      "response": {
+        "status": "ANSWERED",
+        "answer": "纺织服装品牌培育行动到2028年提出的目标是培育不少于25个纺织服装卓越品牌 [1]。  \n纺织标准升级行动到2028年提出的目标是制修订300项以上标准，其中包含多元适配、数字转型、绿色低碳、健康安全等领域的标准，并制修订国际标准10项以上 [4]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43b985378c05064f861f6",
+            "chunkId": "6ab43b985378c05064f861f8",
+            "snippet": "## 一、总体要求\n\n以习近平新时代中国特色社会主义思想为指导，深入贯 彻党的二十大和二十届历次全会精神，完整、准确、全面贯 彻新发展理念，坚持政府引导与市场主导相结合，坚持分类 培育与协同发展相结合，通过强化品牌培育关键要素，进一 步满足人民群众日益增长的美好生活需要，推进商标品牌建 设，打造一批具有中国特色并被国际"
+          },
+          {
+            "ref": 4,
+            "documentId": "6ab43bd05378c05064f86327",
+            "chunkId": "6ab43bd15378c05064f86329",
+            "snippet": "## 一、总体要求\n\n以习近平新时代中国特色社会主义思想为指导，深入贯 彻党的二十大和二十届历次全会精神，完整准确全面贯彻新 发展理念，按照'标缺必补、标低则提、标优重贯'的思路， 进一步优化标准供给结构，增强标准实施效能，提高标准国 际化水平，加快构建引领产业优化升级的标准体系，推动纺 织工业高质量发展。到 2028"
+          }
+        ]
+      },
+      "totalMs": 1275
+    },
+    {
+      "id": "CD007",
+      "category": "cross_document",
+      "question": "工业互联网与人工智能协同赋能行动的2028年任务，与工业互联网高质量发展意见的2030年规模目标是什么关系？",
+      "expectedStatus": "ANSWERED",
+      "referenceChunkIds": [
+        "6ab43c0d5378c05064f8644f",
+        "6ab43c1a5378c05064f8647b"
+      ],
+      "answerKeyPoints": [
+        "2028年行动聚焦人工智能融合，推动不少于50000家企业完成新型工业网络改造，并在20个重点行业建设高质量数据集。",
+        "2030年意见把基础设施和应用规模扩大到5万张工业5G专网、207个工业中类全覆盖，核心产业增加值突破2.5万亿元。"
+      ],
+      "passed": false,
+      "retrievalMs": 266,
+      "ragMs": 1519,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": true,
+        "referenceCited": true,
+        "answerKeywords": false,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [
+        "answerKeywords"
+      ],
+      "missingAnswerKeywords": [
+        "不少于 50000 家企业",
+        "20 个重点行业",
+        "5 万张工业 5G 专网",
+        "207 个工业中类全覆盖",
+        "2.5 万亿元"
+      ],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [],
+      "retrievedChunkIds": [
+        "6ab43c0d5378c05064f8644e",
+        "6ab43c0d5378c05064f8644f",
+        "6ab43c0d5378c05064f86452",
+        "6ab43c1a5378c05064f8647b",
+        "6ab43c1a5378c05064f8647f"
+      ],
+      "response": {
+        "status": "ANSWERED",
+        "answer": "工业互联网与人工智能协同赋能行动的2028年任务是推动工业互联网与人工智能融合赋能水平显著提升，具体表现为新型工业网络规模扩大、数据体系完善、智能化解决方案培育等 [2]。而工业互联网高质量发展意见的2030年规模目标则是实现更广范围、更深程度、更高水平的发展，包括新型基础设施规模化部署、工业数据制度体系构建、融合应用覆盖207个工业中类等 [3]。两者是递进关系，2028年的任务为2030年的目标奠定基础。",
+        "citations": [
+          {
+            "ref": 2,
+            "documentId": "6ab43c0d5378c05064f8644d",
+            "chunkId": "6ab43c0d5378c05064f8644f",
+            "snippet": "## 一、总体要求\n\n以习近平新时代中国特色社会主义思想为指导，全面贯 彻党的二十大和二十届历次全会精神，完整、准确、全面贯 彻新发展理念，加快构建新发展格局，以推动信息化和工业 化深度融合为主线，以推动'人工智能 + '在工业领域落地 为着力点，深化工业互联网规模应用，巩固提升信息通信业 竞争优势和领先地位，推动制造"
+          },
+          {
+            "ref": 3,
+            "documentId": "6ab43c1a5378c05064f86479",
+            "chunkId": "6ab43c1a5378c05064f8647b",
+            "snippet": "## 一、总体要求\n\n以习近平新时代中国特色社会主义思想为指导，深入贯 彻落实党的二十大和二十届历次全会精神，坚持问题导向、 需求导向、目标导向，统筹发展和安全、建设和应用、补短 和锻长、普及和提高，立足工业、面向工业、服务工业，把 握人工智能发展机遇，系统建设网络、标识、平台、数据、 安全五大功能，着力完善政策、设施"
+          }
+        ]
+      },
+      "totalMs": 1786
+    },
+    {
+      "id": "CD010",
+      "category": "cross_document",
+      "question": "零碳工厂建设路径与国家气候规划分别提出了哪些2030年脱碳和减排目标？",
+      "expectedStatus": "ANSWERED",
+      "referenceChunkIds": [
+        "6ab43be85378c05064f863b4",
+        "6ab43b965378c05064f861e9"
+      ],
+      "answerKeyPoints": [
+        "零碳工厂路径到2030年拓展至钢铁、有色金属、石化化工、建材、纺织等行业，探索传统高载能产业脱碳并加强全生命周期管理。",
+        "国家气候规划要求到2030年单位GDP二氧化碳排放较2025年降低17%，产品碳足迹管理体系基本建成。"
+      ],
+      "passed": false,
+      "retrievalMs": 259,
+      "ragMs": 1422,
+      "checks": {
+        "status": false,
+        "referenceRetrieved": false,
+        "referenceCited": false,
+        "answerKeywords": false,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [
+        "status",
+        "referenceRetrieved",
+        "referenceCited",
+        "answerKeywords"
+      ],
+      "missingAnswerKeywords": [
+        "到 2030 年",
+        "钢铁、有色金属、石化化工、建材、纺织",
+        "降低17%",
+        "产品碳足迹管理体系基本建成"
+      ],
+      "missingRetrievedChunkIds": [
+        "6ab43b965378c05064f861e9"
+      ],
+      "missingCitedChunkIds": [
+        "6ab43b965378c05064f861e9",
+        "6ab43be85378c05064f863b4"
+      ],
+      "retrievedChunkIds": [
+        "6ab43be85378c05064f863b2",
+        "6ab43be85378c05064f863b3",
+        "6ab43be85378c05064f863b4",
+        "6ab43be85378c05064f863b5",
+        "6ab43be85378c05064f863b6"
+      ],
+      "response": {
+        "status": "INSUFFICIENT_EVIDENCE",
+        "answer": "无法根据提供的资料确认。",
+        "citations": []
+      },
+      "totalMs": 1681
+    },
+    {
+      "id": "IE001",
+      "category": "insufficient_evidence",
+      "question": "阿波罗11号登月舱在月面着陆的精确UTC时间是什么？",
+      "expectedStatus": "INSUFFICIENT_EVIDENCE",
+      "referenceChunkIds": [],
+      "answerKeyPoints": [
+        "数据库语料中未出现“阿波罗11号”，没有可引用证据，应回答“无法根据提供的资料确认。”"
+      ],
+      "passed": true,
+      "retrievalMs": 266,
+      "ragMs": 584,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": null,
+        "referenceCited": null,
+        "answerKeywords": true,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [],
+      "missingAnswerKeywords": [],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [],
+      "retrievedChunkIds": [
+        "6ab4689d5378c05064f87bb5",
+        "6ab4689d5378c05064f87bb6",
+        "6ab4689d5378c05064f87bb8",
+        "6ab51b90caf873e6b25f25b0",
+        "6ab51f4acaf873e6b25f33c9"
+      ],
+      "response": {
+        "status": "INSUFFICIENT_EVIDENCE",
+        "answer": "无法根据提供的资料确认。",
+        "citations": []
+      },
+      "totalMs": 850
+    },
+    {
+      "id": "IE002",
+      "category": "insufficient_evidence",
+      "question": "2024年巴黎奥运会男子100米决赛冠军的成绩是多少？",
+      "expectedStatus": "INSUFFICIENT_EVIDENCE",
+      "referenceChunkIds": [],
+      "answerKeyPoints": [
+        "数据库语料中未出现“巴黎奥运会”，没有可引用证据，应回答“无法根据提供的资料确认。”"
+      ],
+      "passed": true,
+      "retrievalMs": 262,
+      "ragMs": 650,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": null,
+        "referenceCited": null,
+        "answerKeywords": true,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [],
+      "missingAnswerKeywords": [],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [],
+      "retrievedChunkIds": [
+        "6ab51bfdcaf873e6b25f274a",
+        "6ab51fffcaf873e6b25f36a9",
+        "6ab51fffcaf873e6b25f36ae",
+        "6ab51fffcaf873e6b25f36af",
+        "6ab525ed730153e605df6270"
+      ],
+      "response": {
+        "status": "INSUFFICIENT_EVIDENCE",
+        "answer": "无法根据提供的资料确认。",
+        "citations": []
+      },
+      "totalMs": 912
+    },
+    {
+      "id": "IE007",
+      "category": "insufficient_evidence",
+      "question": "用户张三的身份证号码和家庭住址是什么？",
+      "expectedStatus": "INSUFFICIENT_EVIDENCE",
+      "referenceChunkIds": [],
+      "answerKeyPoints": [
+        "数据库语料中未出现“张三的身份证号码”，也没有该个人身份信息证据，应回答“无法根据提供的资料确认。”"
+      ],
+      "passed": true,
+      "retrievalMs": 266,
+      "ragMs": 562,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": null,
+        "referenceCited": null,
+        "answerKeywords": true,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [],
+      "missingAnswerKeywords": [],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [],
+      "retrievedChunkIds": [
+        "6ab466565378c05064f87437",
+        "6ab466915378c05064f874d6",
+        "6ab466915378c05064f874f2",
+        "6ab467735378c05064f877ca",
+        "6ab5203fcaf873e6b25f37ac"
+      ],
+      "response": {
+        "status": "INSUFFICIENT_EVIDENCE",
+        "answer": "无法根据提供的资料确认。",
+        "citations": []
+      },
+      "totalMs": 828
+    },
+    {
+      "id": "IE011",
+      "category": "insufficient_evidence",
+      "question": "泰坦尼克号最后一晚头等舱菜单包含哪些全部菜品？",
+      "expectedStatus": "INSUFFICIENT_EVIDENCE",
+      "referenceChunkIds": [],
+      "answerKeyPoints": [
+        "数据库语料中未出现“泰坦尼克号”，没有可引用证据，应回答“无法根据提供的资料确认。”"
+      ],
+      "passed": true,
+      "retrievalMs": 267,
+      "ragMs": 608,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": null,
+        "referenceCited": null,
+        "answerKeywords": true,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [],
+      "missingAnswerKeywords": [],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [],
+      "retrievedChunkIds": [
+        "6ab43b855378c05064f86177",
+        "6ab43b855378c05064f86178",
+        "6ab43b855378c05064f86187",
+        "6ab43b935378c05064f861dd",
+        "6ab43c005378c05064f86427"
+      ],
+      "response": {
+        "status": "INSUFFICIENT_EVIDENCE",
+        "answer": "无法根据提供的资料确认。",
+        "citations": []
+      },
+      "totalMs": 875
+    },
+    {
+      "id": "IE013",
+      "category": "insufficient_evidence",
+      "question": "《蒙娜丽莎》各类颜料的精确化学配方和质量百分比是多少？",
+      "expectedStatus": "INSUFFICIENT_EVIDENCE",
+      "referenceChunkIds": [],
+      "answerKeyPoints": [
+        "数据库语料中未出现“蒙娜丽莎”，没有可引用证据，应回答“无法根据提供的资料确认。”"
+      ],
+      "passed": true,
+      "retrievalMs": 269,
+      "ragMs": 597,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": null,
+        "referenceCited": null,
+        "answerKeywords": true,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [],
+      "missingAnswerKeywords": [],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [],
+      "retrievedChunkIds": [
+        "6ab51b90caf873e6b25f2592",
+        "6ab51fe7caf873e6b25f3627",
+        "6ab51fe7caf873e6b25f362c",
+        "6ab51fe7caf873e6b25f3639",
+        "6ab51fe7caf873e6b25f363c"
+      ],
+      "response": {
+        "status": "INSUFFICIENT_EVIDENCE",
+        "answer": "无法根据提供的资料确认。",
+        "citations": []
+      },
+      "totalMs": 866
+    },
+    {
+      "id": "DF001",
+      "category": "document_ids_filter",
+      "question": "仅根据指定的《制造业中试平台建设指引（2025版）》，中试平台提供哪五类验证服务？",
+      "expectedStatus": "ANSWERED",
+      "referenceChunkIds": [
+        "6ab43c1f5378c05064f8648f"
+      ],
+      "answerKeyPoints": [
+        "设计验证、功能性能验证、工艺验证、适配验证和生产验证。"
+      ],
+      "passed": true,
+      "retrievalMs": 100,
+      "ragMs": 580,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": true,
+        "referenceCited": true,
+        "answerKeywords": true,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [],
+      "missingAnswerKeywords": [],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [],
+      "retrievedChunkIds": [
+        "6ab43c1f5378c05064f8648f",
+        "6ab43c1f5378c05064f86490",
+        "6ab43c1f5378c05064f86491",
+        "6ab43c1f5378c05064f86492",
+        "6ab43c1f5378c05064f86493"
+      ],
+      "response": {
+        "status": "ANSWERED",
+        "answer": "中试平台提供的五类验证服务包括：设计验证、功能性能验证、工艺验证、适配验证、生产验证 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43c1f5378c05064f8648d",
+            "chunkId": "6ab43c1f5378c05064f8648f",
+            "snippet": "## 一、功能定位\n\n制造业中试平台是为处在试制阶段的样品转化到生产过程 提供中试服务的载体，其主要功能是面向制造业发展需求，汇聚 各类产业资源，推动科技成果产业化应用，提供设计验证、功能 性能验证、工艺验证、适配验证、生产验证等综合性、专业化服 务和系统化解决方案。中试平台通过设计验证，确定产品的结构 强度等指标参数"
+          }
+        ]
+      },
+      "totalMs": 680
+    },
+    {
+      "id": "DF005",
+      "category": "document_ids_filter",
+      "question": "只在指定的非化石能源电力消费核算指南内作答，核算工作遵循哪三项基本原则？",
+      "expectedStatus": "ANSWERED",
+      "referenceChunkIds": [
+        "6ab43c2d5378c05064f864c6"
+      ],
+      "answerKeyPoints": [
+        "统筹衔接。",
+        "稳妥有序。",
+        "科学合理。"
+      ],
+      "passed": true,
+      "retrievalMs": 130,
+      "ragMs": 477,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": true,
+        "referenceCited": true,
+        "answerKeywords": true,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [],
+      "missingAnswerKeywords": [],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [],
+      "retrievedChunkIds": [
+        "6ab43c2d5378c05064f864c5",
+        "6ab43c2d5378c05064f864c6",
+        "6ab43c2d5378c05064f864c7",
+        "6ab43c2d5378c05064f864c8",
+        "6ab43c2d5378c05064f864c9"
+      ],
+      "response": {
+        "status": "ANSWERED",
+        "answer": "核算工作遵循的三项基本原则是：统筹衔接、稳妥有序、科学合理 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43c2c5378c05064f864c4",
+            "chunkId": "6ab43c2d5378c05064f864c6",
+            "snippet": "## 一、基本原则\n\n- （一）统筹衔接。 加强与能源统计、碳排放核算等制度衔接， 统筹考虑物理连接、电能量交易、绿证绿电交易等因素，分类明确 非化石能源电力消费认定规则和省（自治区、直辖市，下同）市（地\n- 级）两级、电力用户核算方法。\n- （二）稳妥有序。 结合电力市场、绿证市场等建设，稳妥有序 推动核算规则由以电"
+          }
+        ]
+      },
+      "totalMs": 607
+    },
+    {
+      "id": "DF007",
+      "category": "document_ids_filter",
+      "question": "限定在指定的“小快轻准”数字化产品和服务培育指引内，该指引面向哪些对象并回应中小企业哪些转型需求？",
+      "expectedStatus": "ANSWERED",
+      "referenceChunkIds": [
+        "6ab43c3e5378c05064f86514"
+      ],
+      "answerKeyPoints": [
+        "主要面向中小企业、数字化服务商和地方各级中小企业主管部门。",
+        "围绕中小企业在创新、提质、降本、增效、绿色、安全等方面的数字化转型需求，促进产品与服务供需适配。"
+      ],
+      "passed": false,
+      "retrievalMs": 111,
+      "ragMs": 527,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": true,
+        "referenceCited": true,
+        "answerKeywords": false,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [
+        "answerKeywords"
+      ],
+      "missingAnswerKeywords": [
+        "供需适配"
+      ],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [],
+      "retrievedChunkIds": [
+        "6ab43c3e5378c05064f86513",
+        "6ab43c3e5378c05064f86514",
+        "6ab43c3e5378c05064f86515",
+        "6ab43c3e5378c05064f8651c",
+        "6ab43c3e5378c05064f8651e"
+      ],
+      "response": {
+        "status": "ANSWERED",
+        "answer": "该指引面向中小企业、数字化服务商和地方各级中小企业主管部门 [1]。它回应中小企业在创新、提质、降本、增效、绿色、安全等方面的数字化转型需求 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43c3e5378c05064f86512",
+            "chunkId": "6ab43c3e5378c05064f86514",
+            "snippet": "## 一、适用范围\n\n本文件主要面向中小企业、数字化服务商和地方各级中 小企业主管部门，旨在引导服务商紧密围绕中小企业在创 新、提质、降本、增效、绿色、安全等方面数字化转型需求， 促进数字化产品与服务供需适配，加快中小企业数字化转 型，为各地中小企业主管部门遴选培育'小快轻准'数字化 产品和服务提供参考指引。"
+          }
+        ]
+      },
+      "totalMs": 638
+    },
+    {
+      "id": "DF008",
+      "category": "document_ids_filter",
+      "question": "仅根据指定的水利发展资金管理办法，水利发展资金是什么、政策实施到何时、由谁管理？",
+      "expectedStatus": "ANSWERED",
+      "referenceChunkIds": [
+        "6ab43c4e5378c05064f86570"
+      ],
+      "answerKeyPoints": [
+        "水利发展资金是中央财政预算安排、用于支持有关水利建设和改革的共同财政事权转移支付资金。",
+        "政策实施期限至2027年，到期前由财政部会同水利部评估是否延续。",
+        "资金由财政部会同水利部负责管理。"
+      ],
+      "passed": true,
+      "retrievalMs": 95,
+      "ragMs": 824,
+      "checks": {
+        "status": true,
+        "referenceRetrieved": true,
+        "referenceCited": true,
+        "answerKeywords": true,
+        "citationMarkers": true,
+        "retrievalDocumentScope": true,
+        "documentScope": true,
+        "refusalHasNoCitations": true
+      },
+      "failureReasons": [],
+      "missingAnswerKeywords": [],
+      "missingRetrievedChunkIds": [],
+      "missingCitedChunkIds": [],
+      "retrievedChunkIds": [
+        "6ab43c4e5378c05064f8656f",
+        "6ab43c4e5378c05064f86570",
+        "6ab43c4e5378c05064f86572",
+        "6ab43c4e5378c05064f86574",
+        "6ab43c4e5378c05064f86575"
+      ],
+      "response": {
+        "status": "ANSWERED",
+        "answer": "水利发展资金是中央财政预算安排用于支持水利建设和改革的共同财政事权转移支付资金 [1]。政策实施期限至2027年，到期前由财政部会同水利部评估确定是否继续实施和延续期限 [1]。水利发展资金由财政部会同水利部负责管理 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43c4e5378c05064f8656e",
+            "chunkId": "6ab43c4e5378c05064f86570",
+            "snippet": "## 第一章 总则\n\n第一条 为加强水利发展资金管理，提高资金使用的规 范性、安全性和有效性，促进水利改革发展，依据《中华人 民共和国预算法》 、 《中共中央、国务院关于全面实施预算绩 效管理的意见》等有关法律法规和制度规定，制定本办法。\n\n第二条 本办法所称水利发展资金，是指中央财政预算 安排用于支持有关水利建设和改"
+          }
+        ]
+      },
+      "totalMs": 919
+    }
+  ]
+}

@@ -1,0 +1,347 @@
+{
+  "generatedAt": "2026-09-27T11:27:10.606448+00:00",
+  "declaredModel": "Qwen/Qwen3-8B-AWQ",
+  "baseUrl": "http://127.0.0.1:18400",
+  "caseFile": "datasets/agent/cases.jsonl",
+  "note": "关键词和轨迹检查只用于发现异常；事实是否受所引 Chunk 支持需人工复核。",
+  "summary": {
+    "total": 5,
+    "passed": 0,
+    "failed": 5,
+    "byType": {
+      "single": {
+        "total": 1,
+        "passed": 0
+      },
+      "multi": {
+        "total": 4,
+        "passed": 0
+      }
+    },
+    "failureReasons": {
+      "answerKeywords": 2,
+      "answerMagnitude": 3,
+      "status": 1,
+      "steps": 1,
+      "calculation": 1,
+      "citationPresence": 1,
+      "referenceCited": 1
+    },
+    "medianMs": 1236,
+    "p95Ms": 1796
+  },
+  "cases": [
+    {
+      "id": "S04",
+      "type": "single",
+      "sourceCaseId": "SC007",
+      "passed": false,
+      "request": {
+        "task": "请使用 rag_ask 查询知识库，仅依据文档回答并注明引用：智能网联新能源汽车规划给出的2030年新能源车销量占比和乘用车能耗指标是什么？",
+        "allowedTools": [
+          "rag_ask"
+        ],
+        "maxSteps": 1
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "到 2030 年，我国新能源乘用车销量占比将达到 70% [1]，乘用车平均燃料消耗量达到每百公里 3.3 升，纯电动乘用车平均电能消耗量达到每百公里 11.5 千瓦时左右 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43b8a5378c05064f861a3",
+            "chunkId": "6ab43b8b5378c05064f861a5",
+            "snippet": "## 一、总体要求\n\n坚持以习近平新时代中国特色社会主义思想为指导，深入 贯彻党的二十大和二十届历次全会精神，认真落实四中全会部 署，完整准确全面贯彻新发展理念，加快构建新发展格局，锚 定基本实现新型工业化目标，统筹发展和安全，以推动高质量 发展为主题，把握智能化、绿色化、融合化发展方向，坚持创 新驱动、安全为要、跨界"
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "到 2030 年，我国新能源乘用车销量占比将达到 70% [1]，乘用车平均燃料消耗量达到每百公里 3.3 升，纯电动乘用车平均电能消耗量达到每百公里 11.5 千瓦时左右 [1]。"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": false,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true,
+        "answerMagnitude": true
+      },
+      "missingAnswerKeywords": [
+        "40%"
+      ],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [
+        "answerKeywords"
+      ],
+      "durationMs": 1796
+    },
+    {
+      "id": "M06",
+      "type": "multi",
+      "sourceCaseId": "SC022",
+      "passed": false,
+      "request": {
+        "task": "请先使用 rag_ask 依据已上传文档查出2028年历史经典产业的中国消费名品与百亿规模龙头企业培育数量目标，计算两项数量目标之差。再使用 calculator 根据查到的数值计算，最后注明文档来源。",
+        "allowedTools": [
+          "rag_ask",
+          "calculator"
+        ],
+        "maxSteps": 2
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "2028年历史经典产业的中国消费名品培育数量目标为100个，百亿规模龙头企业培育数量目标为50家，两者数量目标之差为-50。该结果基于文档 [1] 的信息。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43ba25378c05064f8622a",
+            "chunkId": "6ab43ba35378c05064f8622c",
+            "snippet": "## 一、总体要求\n\n以习近平新时代中国特色社会主义思想为指导，深入贯 彻党的二十大和二十届历次全会精神，认真落实四中全会部 署，坚持扩内需、惠民生、促消费紧密结合，把握好继承传 统根脉与加强时代创新、激发文化价值与创造经济效益、保 持民族特色与接轨国际时尚的关系，巩固提升历史经典产业 在全球产业分工中的地位和竞争力。"
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "到 2028 年，目标是培育 50 家百亿规模龙头企业，塑造 100 个中国消费名品 [1]。"
+          },
+          {
+            "index": 2,
+            "tool": "calculator",
+            "status": "SUCCEEDED",
+            "summary": "50 - 100 = -50"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true,
+        "answerMagnitude": false
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        },
+        {
+          "index": 2,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [
+        "answerMagnitude"
+      ],
+      "durationMs": 1348
+    },
+    {
+      "id": "M08",
+      "type": "multi",
+      "sourceCaseId": "SC039",
+      "passed": false,
+      "request": {
+        "task": "请先使用 rag_ask 依据已上传文档查出2028年服务平台与可落地智能服务应用场景的最低数量指标，计算两个指标数值之差（只比较文件列出的数字）。再使用 calculator 根据查到的数值计算，最后注明文档来源。",
+        "allowedTools": [
+          "rag_ask",
+          "calculator"
+        ],
+        "maxSteps": 2
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "根据查到的数值，2028年服务平台与可落地智能服务应用场景的最低数量指标之差为 -50。文档来源：[1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43bdf5378c05064f8635c",
+            "chunkId": "6ab43be05378c05064f8635e",
+            "snippet": "## 一、总体要求\n\n以习近平新时代中国特色社会主义思想为指导，全面贯 彻党的二十大和二十届历次全会精神，深入落实党中央、国 务院关于促进平台经济创新健康发展的决策部署，完整准确 全面贯彻新发展理念，深刻把握平台经济发展规律，坚持问 题导向、目标导向、结果导向，系统推进平台经济大中小企 业创新协同、生态协同、开放协同，"
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "到 2028 年，打造不少于 10 个服务平台及 60 个可落地的智能服务应用场景 [1]。"
+          },
+          {
+            "index": 2,
+            "tool": "calculator",
+            "status": "SUCCEEDED",
+            "summary": "10 - 60 = -50"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true,
+        "answerMagnitude": false
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        },
+        {
+          "index": 2,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [
+        "answerMagnitude"
+      ],
+      "durationMs": 1151
+    },
+    {
+      "id": "M09",
+      "type": "multi",
+      "sourceCaseId": "SC005",
+      "passed": false,
+      "request": {
+        "task": "请先使用 rag_ask 依据已上传文档查出2030年安全应急装备产业特色园区和产业集群数量目标，计算两个指标数值之差。再使用 calculator 根据查到的数值计算，最后注明文档来源。",
+        "allowedTools": [
+          "rag_ask",
+          "calculator"
+        ],
+        "maxSteps": 2
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "2030年安全应急装备产业集群数量目标为10个，特色园区数量目标为70个，两者之差为-60。该结果基于文档 [1] 提供的信息。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43b875378c05064f86193",
+            "chunkId": "6ab43b885378c05064f86195",
+            "snippet": "## 一、总体要求\n\n坚持以习近平新时代中国特色社会主义思想为指导，深入 贯彻党的二十大和二十届历次全会精神，认真落实四中全会部 署，完整准确全面贯彻新发展理念，加快构建新发展格局，强 化底线思维、极限思维，坚持以人民为中心的发展思想，统筹 发展和安全，锚定基本实现新型工业化目标，以推动高质量发 展为主题，坚持创新驱动"
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "到 2030 年，建设 10 个竞争力强的安全应急装备产业集群、70 个安全应急装备产业特色园区 [1]。"
+          },
+          {
+            "index": 2,
+            "tool": "calculator",
+            "status": "SUCCEEDED",
+            "summary": "10 - 70 = -60"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true,
+        "answerMagnitude": false
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        },
+        {
+          "index": 2,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [
+        "answerMagnitude"
+      ],
+      "durationMs": 1236
+    },
+    {
+      "id": "M10",
+      "type": "multi",
+      "sourceCaseId": "SC010",
+      "passed": false,
+      "request": {
+        "task": "请先使用 rag_ask 依据已上传文档分别查出2030年自动监测数据有效率与运维智能化水平的目标百分比，计算两个指标目标数值之差，单位为百分点。再使用 calculator 根据查到的数值计算，最后注明文档来源。",
+        "allowedTools": [
+          "rag_ask",
+          "calculator"
+        ],
+        "maxSteps": 2
+      },
+      "response": {
+        "status": "MODEL_FAILED",
+        "answer": "模型调用失败",
+        "citations": [],
+        "steps": []
+      },
+      "checks": {
+        "status": false,
+        "steps": false,
+        "answerKeywords": false,
+        "calculation": false,
+        "citationPresence": false,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": false,
+        "documentScope": true,
+        "answerMagnitude": true
+      },
+      "missingAnswerKeywords": [
+        "28",
+        "个百分点"
+      ],
+      "missingReferenceChunkIds": [
+        "6ab43b8d5378c05064f861b4"
+      ],
+      "missingStepKeywords": [],
+      "failureReasons": [
+        "status",
+        "steps",
+        "answerKeywords",
+        "calculation",
+        "citationPresence",
+        "referenceCited"
+      ],
+      "durationMs": 508
+    }
+  ]
+}

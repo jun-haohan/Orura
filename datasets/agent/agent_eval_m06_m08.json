@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-09-27T12:07:29.861411+00:00",
+  "declaredModel": "Qwen/Qwen3-8B-AWQ",
+  "baseUrl": "http://127.0.0.1:18400",
+  "caseFile": "datasets/agent/cases.jsonl",
+  "note": "关键词和轨迹检查只用于发现异常；事实是否受所引 Chunk 支持需人工复核。",
+  "summary": {
+    "total": 2,
+    "passed": 1,
+    "failed": 1,
+    "byType": {
+      "single": {
+        "total": 0,
+        "passed": 0
+      },
+      "multi": {
+        "total": 2,
+        "passed": 1
+      }
+    },
+    "failureReasons": {
+      "status": 1,
+      "answerKeywords": 1,
+      "answerMagnitude": 1,
+      "citationPresence": 1,
+      "referenceCited": 1
+    },
+    "medianMs": 1384,
+    "p95Ms": 1448
+  },
+  "cases": [
+    {
+      "id": "M06",
+      "type": "multi",
+      "sourceCaseId": "SC022",
+      "passed": true,
+      "request": {
+        "task": "请先使用 rag_ask 查询已上传文档，找出2028年中国消费名品和百亿规模龙头企业各自的数量目标；再用 calculator 计算两项目标数值的绝对差（大数减小数），最后引用文档回答。\n本题要求两个目标数值的绝对差。先从 rag_ask 的回答获取两个数值，再调用 calculator 一次，将较大数减去较小数。calculator 的参数只能是 JSON 对象，唯一字段 expression 的值只能是由查到的十进制数字与减号组成的四则运算表达式；不要传入 abs()、max() 等函数、单位、百分号、等号或中文。最终回答给出非负差值和文档引用。",
+        "allowedTools": [
+          "rag_ask",
+          "calculator"
+        ],
+        "maxSteps": 2
+      },
+      "response": {
+        "status": "COMPLETED",
+        "answer": "2028年中国消费名品和百亿规模龙头企业数量目标的绝对差为 50，引用文档 [1]。",
+        "citations": [
+          {
+            "ref": 1,
+            "documentId": "6ab43ba25378c05064f8622a",
+            "chunkId": "6ab43ba35378c05064f8622c",
+            "snippet": "## 一、总体要求\n\n以习近平新时代中国特色社会主义思想为指导，深入贯 彻党的二十大和二十届历次全会精神，认真落实四中全会部 署，坚持扩内需、惠民生、促消费紧密结合，把握好继承传 统根脉与加强时代创新、激发文化价值与创造经济效益、保 持民族特色与接轨国际时尚的关系，巩固提升历史经典产业 在全球产业分工中的地位和竞争力。"
+          }
+        ],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "到 2028 年，中国计划培育 50 家百亿规模龙头企业 [1]，并塑造 100 个中国消费名品 [1]。"
+          },
+          {
+            "index": 2,
+            "tool": "calculator",
+            "status": "SUCCEEDED",
+            "summary": "100 - 50 = 50"
+          }
+        ]
+      },
+      "checks": {
+        "status": true,
+        "steps": true,
+        "answerKeywords": true,
+        "answerMagnitude": true,
+        "calculation": true,
+        "citationPresence": true,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": true,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [],
+      "missingReferenceChunkIds": [],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        },
+        {
+          "index": 2,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [],
+      "durationMs": 1448
+    },
+    {
+      "id": "M08",
+      "type": "multi",
+      "sourceCaseId": "SC039",
+      "passed": false,
+      "request": {
+        "task": "请先使用 rag_ask 查询已上传文档，找出2028年服务平台与可落地智能服务应用场景各自的最低数量指标；再用 calculator 计算这两个目标数字的绝对差（大数减小数，只比较指标数字，不推断实际数量），最后引用文档回答。\n本题要求两个目标数值的绝对差。先从 rag_ask 的回答获取两个数值，再调用 calculator 一次，将较大数减去较小数。calculator 的参数只能是 JSON 对象，唯一字段 expression 的值只能是由查到的十进制数字与减号组成的四则运算表达式；不要传入 abs()、max() 等函数、单位、百分号、等号或中文。最终回答给出非负差值和文档引用。",
+        "allowedTools": [
+          "rag_ask",
+          "calculator"
+        ],
+        "maxSteps": 2
+      },
+      "response": {
+        "status": "INSUFFICIENT_EVIDENCE",
+        "answer": "无法根据提供的资料确认。",
+        "citations": [],
+        "steps": [
+          {
+            "index": 1,
+            "tool": "rag_ask",
+            "status": "SUCCEEDED",
+            "summary": "到 2028 年，服务平台的最低数量指标为不少于 10 个 [1]，可落地的智能服务应用场景的最低数量指标为不少于 60 个 [1]。"
+          },
+          {
+            "index": 2,
+            "tool": "calculator",
+            "status": "SUCCEEDED",
+            "summary": "10 - 60 = -50"
+          }
+        ]
+      },
+      "checks": {
+        "status": false,
+        "steps": true,
+        "answerKeywords": false,
+        "answerMagnitude": false,
+        "calculation": true,
+        "citationPresence": false,
+        "citationMarkers": true,
+        "citationSources": true,
+        "referenceCited": false,
+        "documentScope": true
+      },
+      "missingAnswerKeywords": [
+        "50"
+      ],
+      "missingReferenceChunkIds": [
+        "6ab43be05378c05064f8635e"
+      ],
+      "missingStepKeywords": [
+        {
+          "index": 1,
+          "keywords": []
+        },
+        {
+          "index": 2,
+          "keywords": []
+        }
+      ],
+      "failureReasons": [
+        "status",
+        "answerKeywords",
+        "answerMagnitude",
+        "citationPresence",
+        "referenceCited"
+      ],
+      "durationMs": 1321
+    }
+  ]
+}
