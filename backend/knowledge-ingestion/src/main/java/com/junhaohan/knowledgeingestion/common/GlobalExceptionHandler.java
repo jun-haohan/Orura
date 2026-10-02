@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartException;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -62,6 +64,13 @@ public class GlobalExceptionHandler {
         );
     }
 
+    /** 保留业务接口主动返回的 HTTP 状态，例如流程版本不存在时的 404。 */
+    @ExceptionHandler(ResponseStatusException.class)
+    public ResponseEntity<Map<String, Object>> handleResponseStatus(ResponseStatusException e) {
+        return buildResponse(e.getStatusCode(),
+                e.getReason() == null ? "请求失败" : e.getReason());
+    }
+
     /** 将模型服务超时或故障转换为网关错误。 */
     @ExceptionHandler(LlmClientException.class)
     public ResponseEntity<Map<String, Object>> handleLlmClient(LlmClientException e) {
@@ -86,7 +95,7 @@ public class GlobalExceptionHandler {
 
     /** 生成统一错误响应。 */
     private ResponseEntity<Map<String, Object>> buildResponse(
-            HttpStatus status,
+            HttpStatusCode status,
             String message) {
 
         Map<String, Object> body = new LinkedHashMap<>();

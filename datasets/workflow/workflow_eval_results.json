@@ -1,0 +1,142 @@
+{
+  "generatedAt": "2026-10-02T09:57:18.272059+00:00",
+  "baseUrl": "http://127.0.0.1:18400",
+  "dataset": "/home/hhj/Orura/datasets/agent/cases.jsonl",
+  "documentId": "6ab43c1f5378c05064f8648d",
+  "referenceChunkIds": [
+    "6ab43c1f5378c05064f8648f"
+  ],
+  "summary": {
+    "PASS": 11,
+    "FAIL": 0,
+    "SKIP": 0
+  },
+  "cases": [
+    {
+      "id": "T01",
+      "name": "独立 TOOL 计算及运行查询",
+      "outcome": "PASS",
+      "observed": {
+        "runId": "f3eecb35-bf0a-43f7-8da3-4dfc6434979d",
+        "answer": "9 与 4 的绝对差 = 5"
+      }
+    },
+    {
+      "id": "T02",
+      "name": "必填输入缺失",
+      "outcome": "PASS",
+      "observed": {
+        "runId": "eda28e41-2664-4677-8886-b26c1b1a6ac5",
+        "errorCode": "INPUT_ERROR"
+      }
+    },
+    {
+      "id": "T03",
+      "name": "文档范围不能扩大",
+      "outcome": "PASS",
+      "observed": {
+        "runId": "7cc2f4be-f984-47af-9daf-edb5fe4dd1ed",
+        "errorCode": "INPUT_ERROR"
+      }
+    },
+    {
+      "id": "T04",
+      "name": "不可变版本与旧版运行",
+      "outcome": "PASS",
+      "observed": {
+        "workflowId": "5796ed1f-0080-4fa8-b7e8-03ec1e36f5bd",
+        "oldRunId": "c1f4cd29-f7a1-45b6-9a8d-fd4a055c936e",
+        "newRunId": "099a087b-2daa-44d0-bee0-13d0e8b53464"
+      }
+    },
+    {
+      "id": "T05",
+      "name": "非法循环",
+      "outcome": "PASS",
+      "observed": {
+        "httpStatus": 400,
+        "error": "节点不允许多个入边或分支合流: calc"
+      }
+    },
+    {
+      "id": "T06",
+      "name": "未知工具",
+      "outcome": "PASS",
+      "observed": {
+        "httpStatus": 400,
+        "error": "Workflow TOOL 只允许确定性工具: calc"
+      }
+    },
+    {
+      "id": "T07",
+      "name": "非法上游绑定",
+      "outcome": "PASS",
+      "observed": {
+        "httpStatus": 400,
+        "error": "节点 finish 绑定错误: 绑定引用的节点不是必经上游: unknown"
+      }
+    },
+    {
+      "id": "T08",
+      "name": "知识答案缺少同源引用",
+      "outcome": "PASS",
+      "observed": {
+        "httpStatus": 400,
+        "error": "知识答案必须绑定同一节点的引用: answered"
+      }
+    },
+    {
+      "id": "T09",
+      "name": "有证据走 true 分支",
+      "outcome": "PASS",
+      "observed": {
+        "runId": "d3301a56-f38d-41fd-bea2-5fa28f774703",
+        "answer": "中试平台提供的五类验证服务包括设计验证、功能性性能验证、工艺验证、适配验证和生产验证 [3]。",
+        "citationChunkIds": [
+          "6ab43c1f5378c05064f8648f"
+        ],
+        "nodeIds": [
+          "start",
+          "search",
+          "check",
+          "answered"
+        ]
+      }
+    },
+    {
+      "id": "T10",
+      "name": "证据不足走 false 分支",
+      "outcome": "PASS",
+      "observed": {
+        "runId": "fe6e9684-c461-406f-8f38-2aed4cdb0730",
+        "answer": "当前文档没有足够依据。",
+        "citationChunkIds": [],
+        "nodeIds": [
+          "start",
+          "search",
+          "check",
+          "missing"
+        ]
+      }
+    },
+    {
+      "id": "T11",
+      "name": "RAG → Agent 自取知识引用",
+      "outcome": "PASS",
+      "observed": {
+        "runId": "3c30ba89-22a1-4892-8f8f-2238034d5025",
+        "answer": "中试平台提供的五类验证服务包括：设计验证、功能性性能验证、工艺验证、适配验证和生产验证 [1]。",
+        "citationChunkIds": [
+          "6ab43c1f5378c05064f8648f"
+        ],
+        "nodeIds": [
+          "start",
+          "search",
+          "check",
+          "agent",
+          "answered"
+        ]
+      }
+    }
+  ]
+}

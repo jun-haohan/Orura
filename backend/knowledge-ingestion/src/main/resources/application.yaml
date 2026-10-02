@@ -64,3 +64,10 @@ agent:
   max-step-summary-chars: 160
   max-tool-result-chars: 2000
   model-temperature: 0.0
+
+workflow:
+  max-nodes: 20
+  max-node-executions: 20
+  node-timeout-seconds: 180
+  total-timeout-seconds: 300
+  max-output-chars: 1000

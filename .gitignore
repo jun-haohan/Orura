@@ -24,3 +24,5 @@ hs_err_pid*
 replay_pid*
 
 docker/data/
+datasets/computer_docs_200/
+datasets/public_docs_100/
